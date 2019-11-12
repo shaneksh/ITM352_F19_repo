@@ -7,8 +7,8 @@
   // form was submitted so process the invoice
   if (params.has('purchase_submit')) {
     for (i = 0; i < products.length; i++) {
-      if (params.has(`quantity${cartcount}`)) {
-        a_qty = params.get(`quantity${cartcount}`);
+      if (params.has(`quantity1`)) {
+        a_qty = params.get(`quantity1`);
         quantities[i] = a_qty;
       }
     }
