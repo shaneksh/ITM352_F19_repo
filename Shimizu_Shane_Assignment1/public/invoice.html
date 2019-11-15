@@ -1,0 +1,150 @@
+<!--Author: Shane Shimizu-->
+<!--File Description: invoice page-->
+<script src=products.js type="text/javascript"></script>
+<script src=store.js type="text/javascript"></script>
+<script>
+	//Source from Professor Daniel Ports Assignment 1 Invoice
+	let params = (new URL(document.location)).searchParams; //gets query string that has form data and returns URLsearchparams objects to be able to get query
+	var quantities = [];//makes the variables quantities into an array
+	// form was submitted so process the invoice
+	if (params.has('purchase_submit')) { //if the form has purchase_submit
+		for (i = 0; i < products.length; i++) {
+			if (params.has(`quantity${i}`)) { //if the form has quantity(i)
+				a_qty = params.get(`quantity${i}`); //quantity(i) is assigned into a_qty
+				quantities[i] = a_qty; //a_qty is placed into the array
+			}
+		}
+	} else {
+		document.write('no form submitted'); //displays when no form is submitted
+	}
+	console.log(quantities); //displays quantities array in the console
+</script>
+
+<!--Invoice layout source from: https://codepen.io/tjoen/pen/vCHfu -->
+<!DOCTYPE html>
+<html class="htmltwo">
+
+<head>
+	<meta charset="utf-8">
+	<title>Invoice</title>
+	<link rel="stylesheet" href="./styles.css">
+	<link rel="license" href="https://www.opensource.org/licenses/mit-license/">
+</head>
+
+<body class="bodytwo">
+	<header class="headertwo">
+		<h1 class="hOne">SHANES SURF SHOP: INVOICE</h1>
+		<div class="shanelogo">
+			<p><img src="Images/shanelogo2.png"></p>
+		</div>
+	</header>
+	<article>
+		<h1 class="hOne">Recipient</h1>
+		<address>
+			<p>Thank you for your purchase!<br>
+				<div class="emphasis">Shanes Surf Shop</div></em>
+			</p>
+		</address>
+		<table class="meta">
+			<tr>
+				<th>Date</span></th>
+				<td id="invoicedate">date</td>
+				<!--displays date-->
+				<script>document.getElementById("invoicedate").innerHTML = date;</script>
+			</tr>
+		</table>
+		<table class="inventory">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Quantity</th>
+					<th>Price</th>
+					<th>Extended Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--Source from Professor Daniel Ports Invoice on Assignment 1-->
+				<script>
+					subtotal = 0;
+					//for loop to display products in table each having its own row
+					for (i = 0; i < products.length; i++) {
+						if (quantities[i] > 0) {
+							// product row
+							extended_price = quantities[i] * products[i].price  //compute extended price
+							subtotal += extended_price; //compute subtotal
+							//displays products(i) model, quantities, price, and extended_price into the table in its own row
+							document.write(`
+              <tr>
+                <td width="43%">${products[i].model}</td>
+                <td align="center" width="11%">${quantities[i]}</td>
+                <td width="13%">\$${products[i].price.toFixed(2)}</td>
+                <td width="54%">\$${extended_price.toFixed(2)}</td>
+              </tr>
+              `);
+						}
+					}
+					// Compute tax
+					var tax_rate = 0.04;
+					var tax = tax_rate * subtotal;
+
+					// Compute shipping
+					if (subtotal < 200) { //if subtotal is less than 200
+						shipping = 7;
+					}
+					else if (subtotal < 400) { //if subtotal is less than 400
+						shipping = 10;
+					}
+					else {
+						shipping = 0.03 * subtotal; // else 2% of subtotal
+					}
+
+					// Compute grand total
+					var total = subtotal + tax + shipping;
+				</script>
+			</tbody>
+		</table>
+
+		<table class="balance">
+			<tr>
+				<th>Sub-total</th>
+				<td>$
+					<script>document.write(subtotal.toFixed(2));</script>
+				</td>
+				<!--displays subtotal to 2 decimal places-->
+			</tr>
+			<tr>
+				<th>Tax @
+					<script>document.write(100 * tax_rate);</script>%</th>
+				<td>$
+					<script>document.write(tax.toFixed(2));</script>
+				</td>
+				<!--displays tax to 2 decimal places-->
+			</tr>
+			<tr>
+				<th>Shipping</th>
+				<td>$
+					<script>document.write(shipping.toFixed(2));</script>
+				</td>
+				<!--display shipping to 2 decimal places-->
+			</tr>
+			<tr>
+				<th class="invoicetotalhead">Total</th>
+				<td class="invoicetotal">$
+					<script>document.write(total.toFixed(2));</script>
+				</td>
+				<!--displays grand total to 2 decimal places-->
+			</tr>
+		</table>
+	</article>
+	<aside>
+		<h1 class="hOne">OUR SHIPPING POLICY</h1>
+		<div>
+			<!--shipping rates-->
+			<br>A subtotal $0 - $199 will be $7 shipping
+			<br>A subtotal $200 - $399 will be $10 shipping
+			<br>Subtotals over $400 will be charged 3% of the subtotal amount
+		</div>
+	</aside>
+</body>
+
+</html>
