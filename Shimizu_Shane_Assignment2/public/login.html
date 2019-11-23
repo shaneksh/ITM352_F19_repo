@@ -8,6 +8,13 @@
     <script src="login.js"></script>
 </head>
 <body>
-    
+    <form id="login_form" method="POST">
+        <input type="text" name="username" size="40" placeholder="enter username" ><br />
+        <input type="password" name="password" size="40" placeholder="enter password"><br />
+        <input type="submit" value="Submit" id="submit">
+        </form>
 </body>
+<script>
+login_form.action = "logon" + location.search;
+</script>
 </html>
