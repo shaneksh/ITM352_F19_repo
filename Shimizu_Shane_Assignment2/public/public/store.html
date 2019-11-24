@@ -1,0 +1,41 @@
+<!--Author: Shane Shimizu-->
+<!--File Description: products page-->
+<!DOCTYPE html>
+<html>
+ <!--Source from: WebDevSimplified, https://github.com/WebDevSimplified/Introduction-to-Web-Development/tree/master/Introduction%20to%20CSS/Lesson%203-->
+
+<head>
+    <title>Shane's Surf Shop | Shop</title>
+    <meta name="description" content="This is the description">
+    <link rel="stylesheet" href="styles.css" />
+    <script src="store.js" async></script>
+    <script src="products.js"></script>
+
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="main-nav nav">
+            <ul>
+                <li><a href="index.html">H O M E</a></li>
+                <li><a href="store.html">S H O P</a></li>
+
+            </ul>
+        </nav>
+        <h1 class="title-name title-name-large">P R O D U C T S</h1>
+    </header>
+    <section class="container content-section">
+        <!--creates an HTML form and the action upon submission is process_form, browser will send the data to the web server to be processed with POST.-->
+        <form name="product_selection_form" action="/process_form" method="POST">
+            <h2 class="section-header">TOP SELLERS</h2>
+            <div class="shop-items">
+                <!--calls function to display products on page-->
+                <script>displayProducts();</script>
+            </div>
+            <!--creates a submit button that submits the form-->
+            <input class="btn btn-primary btn-purchase" type="submit" name="purchase_submit" value="P U R C H A S E">
+        </form>
+    </section>
+</body>
+
+</html>

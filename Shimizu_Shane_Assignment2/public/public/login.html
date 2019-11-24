@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="store.js" type = "text/javascript"></script>
+    <script>
+        let params = (new URL(document.location)).searchParams;
+        if (params.has("LoginError")) {
+            window.onload = function() {
+
+                loginError = params.get("LoginError");
+                passSame = "Incorrect Password";
+                notReg = params.get("LoginError");
+
+                if(loginError == passSame) {
+                    document.getElementById("passwordlabel").innerHTML=loginError;
+                    loginError = '';
+                } 
+                if(loginError == notReg) {
+                    document.getElementById("usernamelabel").innerHTML=loginError;
+                    loginError = '';
+                }
+                if (params.has("stickies")){
+                    stickTheInput = params.get("stickies");
+                    document.getElementById("userBox").value=stickTheInput;
+                    loginError = '';
+                }
+            }
+           
+        }
+        
+    </script>
+</head>
+<body>
+    <form method="POST" name="login_form">
+        <input type="text" id="userBox" name="username" size="40" placeholder="enter username" value="">
+        <label id="usernamelabel" class="">username</label><br />
+        <input type="password" name="password" size="40" placeholder="enter password" value="">
+        <label id="passwordlabel" class="">password</label><br />
+        <input type="submit" value="Submit" id="submit" name="login_submit">
+    </form>
+    <a id="registrationpage"><button type = "button">register here</button></a>
+</body>
+</html>
+<script>
+    //Sets link with quantity data to pass to next page
+    registrationpage.href="registration.html" + document.location.search;
+    login_form.action="./login" + document.location.search; 
+</script>            
