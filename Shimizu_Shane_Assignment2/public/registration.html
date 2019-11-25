@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        let params = (new URL(document.location)).searchParams;
+        if (params.has("RegisterError")) {
+            window.onload = function () {
+
+                regError = params.get("RegisterError");
+                nameLong = 'fullname is too long';
+                nameNoLetter = 'name must be letters only';
+
+
+
+                if (regError == nameLong) {
+                    document.getElementById("regfullname").innerHTML = regError;
+                }
+                if (regError == nameNoLetter) {
+                    document.getElementById("regfullname").innerHTML = regError;
+
+                }
+
+                if (params.has("RegisterError2")) {
+
+                    regError2 = params.get("RegisterError2");
+                    passNoMatch = 'password does not match';
+                    passLength = 'password must be more than 6 characters long';
+
+                    if (regError2 == passLength) {
+                        document.getElementById("regpassword").innerHTML = regError2;
+                    }
+                    if (regError2 == passNoMatch) {
+                        document.getElementById("regrepeatpassword").innerHTML = regError2;
+                    }
+
+
+                }
+
+                if (params.has("RegisterError3")) {
+
+
+                    regError3 = params.get("RegisterError3");
+
+                    useNumLet = 'useusername must be characters and numbers only';
+                    useLong = 'username is too long';
+                    useShort = 'username is too short';
+                    useTaken = 'user already registered';
+
+                    if (regError3 == useNumLet) {
+                        document.getElementById("regusername").innerHTML = regError3;
+                    }
+                    if (regError3 == useLong) {
+                        document.getElementById("regusername").innerHTML = regError3;
+                    }
+                    if (regError3 == useShort) {
+                        document.getElementById("regusername").innerHTML = regError3;
+                    }
+                    if (regError3 == useTaken) {
+                        document.getElementById("regusername").innerHTML = regError3;
+                    }
+
+                }
+
+                if (params.has("RegisterError4")) {
+
+
+                    regError4 = params.get("RegisterError4");
+                    emailInvalid = 'email is invalid';
+
+                    if (regError4 == emailInvalid) {
+                        document.getElementById("regemail").innerHTML = regError4;
+                    }
+
+                }
+
+                if (params.has("stickMe")) {
+
+
+                    stickReset = params.get("stickMe");
+                    document.getElementById("regfullnamebox").value = stickReset;
+                    //regError='';
+
+                }
+                if (params.has("stickMe3")) {
+
+                    stickReset3 = params.get("stickMe3");
+                    document.getElementById("regusernamebox").value = stickReset3;
+                    //regError='';
+
+                }
+                if (params.has("stickMe4")) {
+
+                    stickReset4 = params.get("stickMe4");
+                    document.getElementById("regemailbox").value = stickReset4;
+                    //regError='';
+
+                }
+            }
+        
+        }
+
+
+
+
+
+    </script>
+
+</head>
+
+<body>
+    <form method="POST" id="register_form" name="registration_form">
+        <input type="text" id="regfullnamebox" name="fullname" size="40" placeholder="enter fullname" value="">
+        <label id="regfullname" class="">fullname</label><br />
+        <input type="text" id="regusernamebox" name="username" size="40" placeholder="enter username" value="">
+        <label id="regusername" class="">username</label><br />
+        <input type="password" id="reguserbox" name="password" size="40" placeholder="enter password" value="">
+        <label id="regpassword" class="">password</label><br />
+        <input type="password" id="reguserbox" name="repeat_password" size="40" placeholder="enter password again"
+            value="">
+        <label id="regrepeatpassword" class="">repeat password</label><br />
+        <input type="email" id="regemailbox" name="email" size="40" placeholder="enter email" value="">
+        <label id="regemail" class="">email</label><br />
+        <input type="submit" value="register" id="submit">
+    </form>
+</body>
+<script>
+    //Sets link with quantity data to pass to next page
+    register_form.action = "/register" + document.location.search;
+</script>
+
+</html>

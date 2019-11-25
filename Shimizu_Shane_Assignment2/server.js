@@ -115,6 +115,7 @@ app.post("/login", function (request, response) {
             request.query.stickMe2 = stickPut; 
             qString = querystring.stringify(request.query);
             response.redirect("./invoice.html?" + qString);
+            response.redirect("/invoiceCheck?" + qString);
             //if the quantity is valid, user is directed to invoice along with the query data from the form
         } else if (users_reg_data[the_username].password != request.body.password) {
             error = "Incorrect Password";
@@ -135,6 +136,7 @@ app.post("/login", function (request, response) {
 });
 
 
+
 app.post("/register", function (request, response) {
     // process a simple register form
     //reg_errors = {};
@@ -149,38 +151,87 @@ app.post("/register", function (request, response) {
     regInputUser = request.body.username;
     regInputPass = request.body.password;
     regFullName = request.body.fullname;
+    regFullName2 = request.body.fullname;
     regPassword = request.body.password;
     regRepPassword = request.body.repeat_password;
     regEmail = request.body.email;
     email =request.body.email.toLowerCase();
-    if (typeof users_reg_data[username] != 'undefined') {//check if the password they entered matches what was stored
-        //response.redirect('./login.html?' + qString);//if they did not login successfully, does another get request and redirects user to login to page
-        //can regnerate form here and display errors
-    } else if (request.body.fullname.length > 30){
+    
+    if (request.body.fullname.length > 30){
         //response.send('your name is too damn long, shorten it');
         errors2='fullname is too long';
-        stickType = regFullName;
-    } else if (!(/^[A-Za-z ]+$/.test(fullname))){
+        stickType = regFullName2;
+        stickType3 = regInputUser;
+        stickType4 = regEmail;
+    } else if(!(/^[A-Za-z ]+$/.test(fullname))) { 
         errors2='name must be letters only';
-        stickType = regFullName;
-    } else if (request.body.password.length < 6){
-        errors2='password must be more than 6 characters long';
-    } else if (request.body.repeat_password != request.body.password) {
-        errors2='password does not match';
-    } else if (!(/^[a-zA-Z0-9]+$/.test(username))) { //kiara's siter in law
-        errors2='useusername must be characters and numbers only';
-        stickType = regInputUser;
-    } else if (username.length > 10 ){
-        errors2='username is too long';
-        stickType = regInputUser
-    } else if (username.length < 4) {
-        errors2='username is too short';
-        stickType = regInputUser;
-    } else if (!(/^[a-zA-Z0-9._]+@[a-zA-Z.]+\.[a-zA-Z]{2,3}$/.test(email))){
-        errors2='email is invalid';
-        stickType = regEmail;
+        stickType = regFullName2;
+        stickType3 = regInputUser;
+        stickType4 = regEmail;
+    } else {
+        errors2='';
+        stickType = regFullName2;
+        stickType3 = regInputUser;
+        stickType4 = regEmail;
     }
-    else {   
+
+    if (request.body.password.length < 6){
+        errors3='password must be more than 6 characters long';
+        stickType = regFullName2;
+        stickType3 = regInputUser;
+        stickType4 = regEmail;
+    } else if (request.body.repeat_password != request.body.password) {
+        errors3='password does not match';
+        stickType = regFullName2;
+        stickType3 = regInputUser;
+        stickType4 = regEmail;
+    } else {
+        errors3='';
+        stickType = regFullName2;
+        stickType3 = regInputUser;
+        stickType4 = regEmail;
+    }
+
+    if (typeof users_reg_data[username] != 'undefined') {//check if the password they entered matches what was stored
+        errors4='user already registered';
+        stickType = regFullName2;
+        stickType3 = regInputUser;
+        stickType4 = regEmail;
+    } else if (!(/^[a-zA-Z0-9]+$/.test(username))) { //kiara's siter in law
+        errors4='useusername must be characters and numbers only';
+        stickType = regFullName2;
+        stickType3 = regInputUser;
+        stickType4 = regEmail;
+    } else if(username.length > 10 ) {
+        errors4='username is too long';
+        stickType = regFullName2;
+        stickType3 = regInputUser;
+        stickType4 = regEmail;
+    } else if (username.length < 4) {
+        errors4='username is too short';
+        stickType = regFullName2;
+        stickType3 = regInputUser;
+        stickType4 = regEmail;
+    } else {
+        errors4='';
+        stickType = regFullName2;
+        stickType3 = regInputUser;
+        stickType4 = regEmail;
+    }
+
+    if (!(/^[a-zA-Z0-9._]+@[a-zA-Z.]+\.[a-zA-Z]{2,3}$/.test(email))){
+        errors5='email is invalid';
+        stickType = regFullName2;
+        stickType3 = regInputUser;
+        stickType4 = regEmail;
+    } else {
+        errors5='';
+        stickType = regFullName2;
+        stickType3 = regInputUser;
+        stickType4 = regEmail;
+    }
+
+    if (errors2 == '' && errors3 == '' && errors4 == '' && errors5 =='') {   
         users_reg_data[username] = {}; //new user becomes new property of users_reg_data object
         users_reg_data[username].name = request.body.fullname;
         users_reg_data[username].password = request.body.password;
@@ -189,16 +240,49 @@ app.post("/register", function (request, response) {
         //alert(`${username} registered!`)
         
         stickType2 = regFullName;
+        stickTypeEmail = regEmail;
         request.query.stickMe2 = stickType2; 
+        request.query.stickMeEmail = stickTypeEmail;
         qString = querystring.stringify(request.query);
         response.redirect("./invoice.html?" + qString);
+
+        var nodemailer = require('nodemailer');
+
+					var transporter = nodemailer.createTransport({
+						service: 'gmail',
+						auth: {
+							user: 'shanesurfshop@gmail.com',
+							pass: 'surfdashop'
+						}
+					});
+                    
+					var mailOptions = {
+						from: 'shanesurfshop@gmail.com',
+						to: regEmail,
+						subject: 'SHANES SURF SHOP - Thank you ' + regFullName + ' for your purchase!',
+						text: 'idk how were supposed to attach a copy of the invoice to this email. it probablyt requires some advanced stuff.'
+					};
+
+					transporter.sendMail(mailOptions, function(error, info){
+						if (error) {
+							console.log(error);
+						} else {
+							console.log('Email sent: ' + info.response);
+						}
+					});
     
         //response.redirect ("./invoice.html?" + qString );//if the quantity is valid, user is directed to invoice along with the query data from the form
 
         console.log(request.body);
 }   
-    request.query.RegisterError = errors2;
+    request.query.RegisterError = errors2; 
+    request.query.RegisterError2 =  errors3; 
+    request.query.RegisterError3 = errors4; 
+    request.query.RegisterError4 =  errors5; 
+
     request.query.stickMe = stickType;
+    request.query.stickMe3 = stickType3;
+    request.query.stickMe4 = stickType4;
     qString = querystring.stringify(request.query);
     response.redirect("./registration.html?" + qString);    
 
