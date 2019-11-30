@@ -482,6 +482,14 @@ td {
   margin: 0 1em 1em 0; 
 }
 
+.userinfo{ 
+  float: left; 
+  font-size: 75%; 
+  font-style: normal; 
+  line-height: 1.25; 
+  margin: 0 1em 1em 0; 
+}
+
 .headertwo address p { 
   margin: 0 0 0.25em; 
 }

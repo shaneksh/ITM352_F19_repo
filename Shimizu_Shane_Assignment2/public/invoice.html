@@ -20,25 +20,41 @@
 	}
 	console.log(quantities); //displays quantities array in the console
 
-	if (params.has("stickMe2")) {
-            window.onload = function() {
+	
+            window.onload = function() { //when the page loads
+			emptyName = document.getElementById("showFullName").innerHTML; //get the innner html of the given ID and assigsn into a variable
+			compareVar = 0; //create variable to compare to emptyname variable
 
-                displayName = params.get("stickMe2");
-				document.getElementById("showFullName").innerHTML=displayName;
-				noLogin = params.has("stickMeEmail");
+			if (params.has("stickMe2")) { 
+                	displayName = params.get("stickMe2"); //get the information from the query 
+					document.getElementById("showFullName").innerHTML=displayName; //sets the inner html to display the username
+			} else if (emptyName == compareVar) { //if the inner html does not change from 0 or 0==0
+				javascript:history.go(-1) //redirect user back to login page
+			}
+			if(params.has("stickMeEmail")){
+				displayEmail = params.get("stickMeEmail"); //get the information from the query; email
+				document.getElementById("showEmail").innerHTML = displayEmail;
 
-				if(params.has("stickMeEmail")){
-					displayEmail = params.get("stickMeEmail");
-					document.getElementById("showEmail").innerHTML = displayEmail;
+			}
+			if(params.has("stickMeUserName")){
+				displayUserName = params.get("stickMeUserName"); //get the information from the query; username
+				document.getElementById("showUserName").innerHTML = displayUserName;
+			} 
+			if(params.has("stickMe4")){
+				displayUserName = params.get("stickMe4"); //get the information from the query; username on top
+				document.getElementById("showUserName").innerHTML = displayUserName;
+			}
+			if(params.has("stickMe3")){
+				displayEmail = params.get("stickMe3"); //get the information from the query; email
+				document.getElementById("showEmail").innerHTML = displayEmail;
+			}
 
-				}
-
-            }
-           
-		}else if (typeof noLogin == 'undefined'){
-			window.location.href = 'login.html';
-
-	}
+			}
+			
+		
+			
+		
+	
 </script>
 
 <!--Invoice layout source from: https://codepen.io/tjoen/pen/vCHfu -->
@@ -58,14 +74,15 @@
 		<div class="shanelogo">
 			<p><img src="Images/shanelogo2.png"></p>
 		</div>
-		<address id = "showEmail">
-
-		</address>
+		<div class = "userinfo">
+			USER INFO:
+			<p><b>Email: </b><div id = "showEmail"></div></p> <p><b>Username:</b> <div id = "showUserName"></div></p>
+		</div>
 	</header>
 	<article>
 		<h1 class="hOne">Recipient</h1>
 		<address>
-			<p>Thank you,<div id="showFullName">name</div>for your purchase!<br>
+			<p>Thank you,<div id="showFullName">0</div>for your purchase!<br>
 				<div class="emphasis">Shanes Surf Shop</div></em>
 			</p>
 		</address>

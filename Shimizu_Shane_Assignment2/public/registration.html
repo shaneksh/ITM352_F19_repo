@@ -5,100 +5,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="registration.css" />
     <title>Document</title>
     <script>
-        let params = (new URL(document.location)).searchParams;
-        if (params.has("RegisterError")) {
-            window.onload = function () {
+        let params = (new URL(document.location)).searchParams; //gives access to the get decoded query arguments in the URL.
+        if (params.has("RegisterError")) { //if has RegisterErrors from query
+            window.onload = function () { //when the page loads
 
-                regError = params.get("RegisterError");
-                nameLong = 'fullname is too long';
-                nameNoLetter = 'name must be letters only';
+                regError = params.get("RegisterError"); //get the errors from the query and store into variable
+                nameLong = '<font color="red">Full Name is too long</font>'; //assigns same error message into a variable
+                nameNoLetter = '<font color="red">Name must be letters only</font>'; //assigns same error message into a variable
 
 
 
-                if (regError == nameLong) {
-                    document.getElementById("regfullname").innerHTML = regError;
+                if (regError == nameLong) { //if the error received is the same as the error stored in the variable
+                    document.getElementById("regfullname").innerHTML = regError; //set inner html to display the register error
                 }
-                if (regError == nameNoLetter) {
-                    document.getElementById("regfullname").innerHTML = regError;
-
-                }
-
-                if (params.has("RegisterError2")) {
-
-                    regError2 = params.get("RegisterError2");
-                    passNoMatch = 'password does not match';
-                    passLength = 'password must be more than 6 characters long';
-
-                    if (regError2 == passLength) {
-                        document.getElementById("regpassword").innerHTML = regError2;
-                    }
-                    if (regError2 == passNoMatch) {
-                        document.getElementById("regrepeatpassword").innerHTML = regError2;
-                    }
-
-
+                if (regError == nameNoLetter) { //if the error received is the same as the error stored in the variable
+                    document.getElementById("regfullname").innerHTML = regError; //set inner html to displayn the register error
                 }
 
-                if (params.has("RegisterError3")) {
+                if (params.has("RegisterError2")) { //if has RegisterError2 from query 
 
+                    regError2 = params.get("RegisterError2"); //get the errors from the query and store into variable
+                    passNoMatch = '<font color="red">Password DOES NOT Match</font>'; //assigns same error into a variable
+                    passLength = '<font color="red">Password must be more than 6 characters long</font>'; //assigns same error into a variable
 
-                    regError3 = params.get("RegisterError3");
+                    if (regError2 == passLength) { //if the error received is the same as the error stored in the variable
+                        document.getElementById("regpassword").innerHTML = regError2; //set inner html to displayn the register error
+                    }
+                    if (regError2 == passNoMatch) { //if the error received is the same as the error stored in the variable
+                        document.getElementById("regrepeatpassword").innerHTML = regError2; //set inner html to displayn the register error
+                    }
 
-                    useNumLet = 'useusername must be characters and numbers only';
-                    useLong = 'username is too long';
-                    useShort = 'username is too short';
-                    useTaken = 'user already registered';
-
-                    if (regError3 == useNumLet) {
-                        document.getElementById("regusername").innerHTML = regError3;
-                    }
-                    if (regError3 == useLong) {
-                        document.getElementById("regusername").innerHTML = regError3;
-                    }
-                    if (regError3 == useShort) {
-                        document.getElementById("regusername").innerHTML = regError3;
-                    }
-                    if (regError3 == useTaken) {
-                        document.getElementById("regusername").innerHTML = regError3;
-                    }
 
                 }
 
-                if (params.has("RegisterError4")) {
+                if (params.has("RegisterError3")) { //if has RegisterError3 from query 
 
 
-                    regError4 = params.get("RegisterError4");
-                    emailInvalid = 'email is invalid';
+                    regError3 = params.get("RegisterError3"); //get the errors from the query and store into variable
 
-                    if (regError4 == emailInvalid) {
-                        document.getElementById("regemail").innerHTML = regError4;
+                    useNumLet = '<font color="red">Username must be characters and numbers only</font>'; //assigns same error into a variable
+                    useLong = '<font color="red">Username is too long</font>'; //assigns same error into a variable
+                    useShort = '<font color="red">Username is too short</font>'; //assigns same error into a variable
+                    useTaken = '<font color="red">User already registered</font>'; //assigns same error into a variable
+
+                    if (regError3 == useNumLet) { //if the error received is the same as the error stored in the variable
+                        document.getElementById("regusername").innerHTML = regError3; //set inner html to displayn the register error
+                    }
+                    if (regError3 == useLong) { //if the error received is the same as the error stored in the variable
+                        document.getElementById("regusername").innerHTML = regError3; //set inner html to displayn the register error
+                    }
+                    if (regError3 == useShort) { //if the error received is the same as the error stored in the variable
+                        document.getElementById("regusername").innerHTML = regError3; //set inner html to displayn the register error
+                    }
+                    if (regError3 == useTaken) { 
+                        document.getElementById("regusername").innerHTML = regError3; //set inner html to displayn the register error
                     }
 
                 }
 
-                if (params.has("stickMe")) {
+                if (params.has("RegisterError4")) { //if has RegisterError4 from query
+                    regError4 = params.get("RegisterError4"); //get the errors from the query and store into variable
+                    emailInvalid = '<font color="red">Email is invalid</font>'; //assigns same error into a variable
 
-
-                    stickReset = params.get("stickMe");
-                    document.getElementById("regfullnamebox").value = stickReset;
-                    //regError='';
-
-                }
-                if (params.has("stickMe3")) {
-
-                    stickReset3 = params.get("stickMe3");
-                    document.getElementById("regusernamebox").value = stickReset3;
-                    //regError='';
+                    if (regError4 == emailInvalid) { //if the error received is the same as the error stored in the variable
+                        document.getElementById("regemail").innerHTML = regError4; //set inner html to displayn the register error
+                    }
 
                 }
-                if (params.has("stickMe4")) {
 
-                    stickReset4 = params.get("stickMe4");
-                    document.getElementById("regemailbox").value = stickReset4;
-                    //regError='';
+                if (params.has("stickMe")) { 
+                    stickReset = params.get("stickMe"); //get the info from the query and store into variable
+                    document.getElementById("regfullnamebox").value = stickReset; //sets the value to the inoput of the useer
+                }
+                if (params.has("stickMe3")) { 
+                    stickReset3 = params.get("stickMe3"); //get the info from the query and store into variable
+                    document.getElementById("regusernamebox").value = stickReset3; //sets the value to the input of the user
 
+                }
+                if (params.has("stickMe4")) { 
+                    stickReset4 = params.get("stickMe4"); //get the info from the query and store into variable
+                    document.getElementById("regemailbox").value = stickReset4; //set the value to the input of the user
                 }
             }
         
@@ -113,18 +102,18 @@
 </head>
 
 <body>
-    <form method="POST" id="register_form" name="registration_form">
-        <input type="text" id="regfullnamebox" name="fullname" size="40" placeholder="enter fullname" value="">
-        <label id="regfullname" class="">fullname</label><br />
-        <input type="text" id="regusernamebox" name="username" size="40" placeholder="enter username" value="">
-        <label id="regusername" class="">username</label><br />
-        <input type="password" id="reguserbox" name="password" size="40" placeholder="enter password" value="">
-        <label id="regpassword" class="">password</label><br />
-        <input type="password" id="reguserbox" name="repeat_password" size="40" placeholder="enter password again"
-            value="">
-        <label id="regrepeatpassword" class="">repeat password</label><br />
-        <input type="email" id="regemailbox" name="email" size="40" placeholder="enter email" value="">
-        <label id="regemail" class="">email</label><br />
+    <form method="POST" id="register_form" name="registration_form" class="box">
+        <h1> R E G I S T E R </h1>
+        <input type="text" id="regfullnamebox" name="fullname" size="40" placeholder="enter full name" style="font-size: 15px;" value="">
+        <label id="regfullname" class="" style="color: white;">fullname</label><br />
+        <input type="text" id="regusernamebox" name="username" size="40" placeholder="enter username" style="font-size: 15px;" value="">
+        <label id="regusername" class="" style="color: white;">username</label><br />
+        <input type="password" id="reguserbox" name="password" size="40" placeholder="enter password" style="font-size: 15px;" value="">
+        <label id="regpassword" class="" style="color: white;">password</label><br />
+        <input type="password" id="reguserbox" name="repeat_password" size="40" placeholder="enter password again" style="font-size: 15px;"value="">
+        <label id="regrepeatpassword" class="" style="color: white;">repeat password</label><br />
+        <input type="email" id="regemailbox" name="email" size="40" placeholder="enter email" style="font-size: 15px;" value="">
+        <label id="regemail" class="" style="color: white;">email</label><br />
         <input type="submit" value="register" id="submit">
     </form>
 </body>
