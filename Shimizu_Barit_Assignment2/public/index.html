@@ -1,0 +1,35 @@
+<!--Author: Shane Shimizu, Daniel Francis Barit-->
+<!--File Description: homepage-->
+<!--Date: 11/30/19-->
+<!DOCTYPE html>
+<html>
+ <!--Source from: WebDevSimplified, https://github.com/WebDevSimplified/Introduction-to-Web-Development/tree/master/Introduction%20to%20CSS/Lesson%203-->
+<head>
+    <title>Shanes Surf Shop</title>
+    <meta name="description" content="This is the description">
+    <link rel="stylesheet" href="styles.css" />
+    <script src="products.js"></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="nav main-nav">
+            <ul>
+                <li><a href="index.html">H O M E</a></li>
+                <li><a href="store.html">S H O P</a></li>
+            </ul>
+        </nav>
+        <!--Source from: WebDevSimplified, https://github.com/WebDevSimplified/Introduction-to-Web-Development/tree/master/Introduction%20to%20CSS/Lesson%203-->
+        <h1 class="title-name title-name-large">SHANES SURF SHOP</h1>
+        <div class="container">
+            <!--creates a button, when user clicks, calls welcome function-->
+            <button type="button" class="btn btn-header" onmousedown="welcome();">Click Me!</button>
+        </div>
+    </header>
+    <!--sets video as the back ground and loops it, poster for image in case video deos not load-->
+    <video autoplay muted loop id="homebackground" poster="Images/wavesback.jpg">
+        <source src="Images/homeback2.mp4" type="video/mp4">
+    </video>
+</body>
+
+</html>
