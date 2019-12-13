@@ -1,0 +1,92 @@
+/*
+    Authors: Shane Shimizu, Daniel Francis Barit
+    File Description: CSS page for registration page
+    Date: 11/30/19
+*/
+/* Source: WebDevSimplified: https://github.com/WebDevSimplified/Introduction-to-Web-Development/tree/master/Introduction%20to%20CSS/Lesson%203*/
+@import url("https://fonts.googleapis.com/css?family=Metal+Mania");
+/* CSS Source: https://www.youtube.com/watch?v=HV7DtH3J2PU */
+
+/* General */
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url("Images/surferback.jpg");
+    background-repeat:no-repeat;
+    background-size:cover;
+
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 0.7; /* Firefox */
+  }
+
+/* Registration Form CSS (Box) */
+.box {
+    width: 400px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("Images/shaka.jpeg");
+    background-repeat:no-repeat;
+    background-size:cover;
+    text-align: center;
+}
+
+/* Heading CSS for Login Form */
+.box h1 {
+    color: white;
+    text-transform: uppercase;
+    font-family: "Metal Mania";
+    font-weight: 600;
+}
+
+/* CSS for Name. Username, Password, and Email Input Fields  */
+.box input[type = "text"], .box input[type = "password"], .box input[type = "email"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+.box input[type = "text"]:focus, .box input[type = "password"]:focus, .box input[type = "email"]:focus  {
+    width: 280px;
+    border-color: #2ecc71;
+}
+
+/* CSS for Submit Button */
+.box input[type = "submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+/* On Hover. change color */
+.box input[type = "submit"]:hover {
+    background: #2ecc71;
+}
+
+/* CSS for Registration */
+.register {
+    text-align: center;
+}
