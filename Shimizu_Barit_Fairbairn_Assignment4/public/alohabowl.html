@@ -11,17 +11,7 @@
     <script src="addtocart.js" ></script>
     <script src="userproducts.js"></script>
 
-    <script>
-            // let params = (new URL(document.location)).searchParams; //gives access to the get decoded query arguments in the URL.
-            window.onload = function () { //when the page loads
-                count = 0;
-                if (params.has("displayCartMessage") && count == 0) {
-                    alert(params.get("displayCartMessage"));
-                    userproducts.push(products[0]);
-                }
-            }
-       </script>
-
+  
 </head>
 
 <body>
@@ -39,13 +29,11 @@
         <h1 class="title-name title-name-large">Aloha Bowl</h1>
     </header>
     <section class="container content-section">
-            <form name="product_selection_form" action="/update_cart" method="POST">
                 <div class="shop-items">
                     <!--calls function to display products on page-->
                     <script>displayAlohaBowl();</script>
                 </div>
-                <button class="btn btn-primary btn-purchase" type="submit" name="add_cart" id="cartName" onclick="changeCartButton()">Add To Cart</button>
-            </form>
+                <button class="btn btn-primary btn-purchase" type="submit" name="add_cart" id="cartName" onclick="addThisToCart()">Add To Cart</button>
     </section>
 </body>
 

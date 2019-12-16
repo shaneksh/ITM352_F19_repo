@@ -7,8 +7,15 @@ var express = require('express'); //gets express package
 var app = express(); //starts express
 var myParser = require("body-parser"); //requires body parser to form data 
 var products = require("./public/products.js"); //assigns the product data from the json array into the variable products
+var storedUsersCartArray = require("./public/products.js");
 const querystring = require('querystring'); //requires the querystring of the form.  gives utilities to parse and formate the querystring
-var userproducts = require("./public/userproducts.js");
+
+var myParser = require("body-parser");
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
+var session = require('express-session');
+app.use(session({secret: "ITM352 rocks!"}));
+
 app.use(myParser.urlencoded({ extended: true })); //tells the system to use JSON
 fs = require('fs'); //imports Node File System or fs
 var filename = 'user_data.json';//assigns the user information from the JSON into the variable filename
@@ -19,19 +26,24 @@ app.all('*', function (request, response, next) {
     next();
 });
 
-app.post("/update_cart", function (request, response) { 
-    var qString = querystring.stringify(request.query);
-    var alohaBowlAlreadyInCart = 0;
-        if (alohaBowlAlreadyInCart == 0){
-            itemHasBeenAdded = "Your Item has been added to the cart!";
-            request.query.displayCartMessage = itemHasBeenAdded;
-            qString = querystring.stringify(request.query);
-            response.redirect("./alohabowl.html?" + qString);
-        }    
-        if (alohaBowlAlreadyInCart == 0){
-            userproducts[0] = products[0];
-        }
+app.get("/set_cookie", function (request, response){
+    response.cookie('myname', 'Shane Shimizu', {maxAge: 50*1000}).send('cookie set');
+
 });
+
+app.get("/use_cookie", function (request, response){
+    output = "No cookie with myname";
+    if(typeof request.cookies.myname != 'undefined'){
+        output = `Welcome to the Use Cookie page ${request.cookies.myname}`;
+    }
+    response.send(output);
+});
+
+app.get('/use_session', function(request, response){
+    response.send(`welcome, your session ID is ${request.session.id}`);
+
+});
+
 
 //source from Lab 13
 //posts the process form data with the action as process_form
@@ -39,8 +51,8 @@ app.post("/process_form", function (request, response) {
     let POST = request.body; //assigns the body into POST variable
     var hasValidQuantities = true; //assume that the quantities textbox is true
     var hasPurchases = false; //assume the quantity of purchases are false
-    for (i = 0; i < products.length; i++) { //for loop for each product in the array that increases the count by 1
-        q = POST['quantity' + i]; //quantity entered by the user for a product(s) is assigned into q
+    for (i = 0; i < storedUsersCartArray.length; i++) { //for loop for each product in the array that increases the count by 1
+        q = POST[`quantity${i}`]; //quantity entered by the user for a product(s) is assigned into q
         if (isNonNegInt(q) == false) { //if the quantity enteredby the user is not a valid integer
             hasValidQuantities = false; //HasValidQuantities is false or nothing was purchased
         }
@@ -56,7 +68,7 @@ app.post("/process_form", function (request, response) {
     }
     else {
 
-        response.redirect("./store.html?" + qString); //if quantity is not valid, user is sent back to product page along with the query data entered previously from the user
+        response.redirect("./cart.html?" + qString); //if quantity is not valid, user is sent back to product page along with the query data entered previously from the user
     }
 
 });
@@ -121,6 +133,7 @@ app.post("/login", function (request, response) {
             qString = querystring.stringify(request.query);
             response.redirect("./invoice.html?" + qString); //redirects user back to incoice page with the query string
 
+            
             //sends an email to the email the user entered https://www.w3schools.com/nodejs/nodejs_email.asp
             var nodemailer = require('nodemailer'); //requires nodemailer after install
 
@@ -139,14 +152,14 @@ app.post("/login", function (request, response) {
                 text: 'PLEASE COME AGAIN!'
             };
 
-            transporter.sendMail(mailOptions, function (error, info) { //if failed to send or there are errors, console.log them
-                if (error) {
-                    console.log(error);
+            transporter.sendMail(mailOptions, function (error1, info) { //if failed to send or there are errors, console.log them
+                if (error1) {
+                    console.log(error1);
                 } else {
                     console.log('Email sent: ' + info.response);
                 }
             });
-
+            
         //else if the password of the user name in JSON does not match the password entered
         } else if (users_reg_data[the_username].password != request.body.password) {
             error = '<font color="red">Incorrect Password</font>'; //sets error to incorrect password, which will display on the page
@@ -170,7 +183,6 @@ app.post("/login", function (request, response) {
 
 
 });
-
 
 
 // process a simple register form

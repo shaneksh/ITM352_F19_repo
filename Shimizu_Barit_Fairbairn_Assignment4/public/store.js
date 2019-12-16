@@ -32,14 +32,14 @@ window.onload = function () {
         has_errors = false; // assume quantities are valid from the start
         total_qty = 0; // need to check if something was selected so we will look if the total > 0
         for (i = 0; i < products.length; i++) { //for loop to check the length of products array
-            if (params.has(`quantity${i}`)) {//if the form has the quantity
-                a_qty = params.get(`quantity${i}`); //assigns the value of the quantity(i) to a_qty
+            if (params.has("quantity0")) {//if the form has the quantity
+                a_qty = params.get("quantity0"); //assigns the value of the quantity(i) to a_qty
                 // make textboxes sticky in case of invalid data
-                product_selection_form[`quantity${i}`].value = a_qty; //assigns a_qty into the value of quantity(i) in product_selection_form
+                product_selection_form["quantity0"].value = a_qty; //assigns a_qty into the value of quantity(i) in product_selection_form
                 total_qty += a_qty; //total_qty becomes total_qty + a_qty
                 if (!isNonNegInt(a_qty)) { //if a_qty is not a valid integer
                     has_errors = true; // oops, invalid quantity
-                    checkQuantityTextbox(product_selection_form[`quantity${i}`]); // show where the error is
+                    checkQuantityTextbox(product_selection_form["quantity0"]); // show where the error is
                 }
             }
         }

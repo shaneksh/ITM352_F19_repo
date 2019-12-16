@@ -9,8 +9,12 @@
 	let params = (new URL(document.location)).searchParams; //gets query string that has form data and returns URLsearchparams objects to be able to get query
 	var quantities = [];//makes the variables quantities into an array
 	// form was submitted so process the invoice
+	storedUsersCart = JSON.parse(localStorage.getItem("usersCart"));
+	storedUsersCartArray = [];
+	storedUsersCartArray.push(storedUsersCart);
+
 	if (params.has('purchase_submit')) { //if the form has purchase_submit
-		for (i = 0; i < products.length; i++) {
+		for (i = 0; i < storedUsersCartArray.length; i++) {
 			if (params.has(`quantity${i}`)) { //if the form has quantity(i)
 				a_qty = params.get(`quantity${i}`); //quantity(i) is assigned into a_qty
 				quantities[i] = a_qty; //a_qty is placed into the array
@@ -45,8 +49,7 @@
 
 	}
 
-
-
+	
 
 
 </script>
@@ -108,17 +111,17 @@
 					<script>
 						subtotal = 0;
 						//for loop to display products in table each having its own row
-						for (i = 0; i < products.length; i++) {
+						for (i = 0; i < storedUsersCartArray.length; i++) {
 							if (quantities[i] > 0) {
 								// product row
-								extended_price = quantities[i] * products[i].price  //compute extended price
+								extended_price = quantities[i] * storedUsersCartArray[i].price  //compute extended price
 								subtotal += extended_price; //compute subtotal
 								//displays products(i) model, quantities, price, and extended_price into the table in its own row
 								document.write(`
               <tr>
-                <td width="43%">${products[i].model}</td>
+                <td width="43%">${storedUsersCartArray[i].model}</td>
                 <td align="center" width="11%">${quantities[i]}</td>
-                <td width="13%">\$${products[i].price.toFixed(2)}</td>
+                <td width="13%">\$${storedUsersCartArray[i].price.toFixed(2)}</td>
                 <td width="54%">\$${extended_price.toFixed(2)}</td>
               </tr>
               `);

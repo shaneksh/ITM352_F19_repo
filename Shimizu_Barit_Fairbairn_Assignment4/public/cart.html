@@ -12,13 +12,35 @@
    <script src="userproducts.js"></script>
 </head>
 <script>
-    window.onload = function () { //when the page loads
-        let params = (new URL(document.location)).searchParams; //gives access to the get decoded query arguments in the URL.
-
-        if (params.has("displayCartMessage")) {
-            document.write("hello");
-        }
+       
+storedUsersCart = JSON.parse(localStorage.getItem("usersCart"));
+storedUsersCartArray.push(storedUsersCart);
+    function displayUserProducts() {
+        document.write(`
+            <div class="shop-item">
+            <span class="shop-item-title">${storedUsersCartArray[0].model}</span>
+            <div class="enlarge">
+                <img class="shop-item-image" src=${storedUsersCartArray[0].image}>
+            </div>
+            <div class="shop-item-description">${storedUsersCartArray[0].description}</div>
+            <div class="shop-item-details">
+                <span class="shop-item-price">$${storedUsersCartArray[0].price.toFixed(2)}</span>
+                <label id="quantity${0}_label" class="shop-item-quantity">Quantity</label>
+                <input class="cart-quantity-input" type="text" name="quantity${0}" onkeyup=checkQuantityTextbox(this); placeholder="0">
+            </div>
+            </div>
+        `);
     }
+
+    function clearCart(){
+        localStorage.clear();
+    }
+
+    let params = (new URL(document.location)).searchParams;
+        if (params.has("quantityError")) { //if there are errors
+            alert(params.get('quantityError')); //alert appropriate quantity error
+        }   
+
 </script>
 <body>
         <header class="main-header">
@@ -34,10 +56,17 @@
             <h1 class="title-name title-name-large">CART</h1>
         </header>
         <section class="container content-section">
+            <!--creates an HTML form and the action upon submission is process_form, browser will send the data to the web server to be processed with POST.-->
+            <form name="product_selection_form" action="/process_form" method="POST">  
+                <h2 class="section-header">Current Items In Cart</h2> 
                 <div class="shop-items">
                     <!--calls function to display products on page-->
                     <script>displayUserProducts();</script>
                 </div>
+                <input class="btn btn-primary btn-purchase" type="submit" name="purchase_submit" value="P U R C H A S E">
+            </form>
+            <button class="btn btn-primary btn-purchase" onclick="clearCart()">Clear Cart</button>
+
         </section>
     </body>
     

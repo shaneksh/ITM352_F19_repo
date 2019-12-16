@@ -10,7 +10,21 @@
     <meta name="description" content="This is the description">
     <link rel="stylesheet" href="styles.css" />
     <script src="products.js"></script>
+    <script src="userproducts.js"></script>
+
+  <script>
+
+  if (typeof(Storage) !== "undefined") {
+    // Store
+    localStorage.setItem("lastname", "Smith");
+    // Retrieve
+    document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+  } else {
+    document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+  }
   
+
+  </script>
 </head>
 
 <body>

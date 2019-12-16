@@ -91,6 +91,7 @@ if (typeof module != 'undefined') {
     module.exports.products = products;
 }
 
+
 //when user clicks on the click me button on the home page
 function welcome() {
     var name = prompt("Hi there! What is your name?"); //prompts the user for their name
@@ -165,18 +166,36 @@ function displayAlohaBowl() {
 }
 
 function displayManaBowl() {
-        document.write(`
-            <div class="shop-item">
-                <div class="enlarge">
-                    <img class="shop-item-image" src=${products[1].image}>
-                </div>
-                <div class="shop-item-description">${products[1].description}</div>
-                <div class="shop-item-details">
-                    <span class="shop-item-price">$${products[1].price.toFixed(2)}</span>
-                    <label id="quantity${1}_label" class="shop-item-quantity">Quantity</label>
-                    <input class="cart-quantity-input" type="text" name="quantity${1}" onkeyup=checkQuantityTextbox(this); placeholder="0">
-                </div>
+    document.write(`
+        <div class="shop-item">
+            <div class="enlarge">
+                <img class="shop-item-image" src=${products[1].image}>
             </div>
-        `); 
+            <div class="shop-item-description">${products[1].description}</div>
+            <div class="shop-item-details">
+                <span class="shop-item-price">$${products[1].price.toFixed(2)}</span>
+            </div>
+        </div>
+    `);  
 }
 
+function displayUserProducts() {
+    document.write(`
+        <div class="shop-item">
+        <span class="shop-item-title">${storedUsersCartArray[0].model}</span>
+        <div class="enlarge">
+            <img class="shop-item-image" src=${storedUsersCartArray[0].image}>
+        </div>
+        <div class="shop-item-description">${storedUsersCartArray[0].description}</div>
+        <div class="shop-item-details">
+            <span class="shop-item-price">$${storedUsersCartArray[0].price.toFixed(2)}</span>
+            <label id="quantity0_label" class="shop-item-quantity">Quantity</label>
+            <input class="cart-quantity-input" type="text" name="quantity0" onkeyup=checkQuantityTextbox(this); placeholder="0">
+        </div>
+        </div>
+    `);
+}
+var storedUsersCartArray = [];
+if (typeof module != 'undefined') {
+    module.exports.storedUsersCartArray = storedUsersCartArray;
+}
