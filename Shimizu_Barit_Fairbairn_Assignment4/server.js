@@ -8,11 +8,10 @@ var app = express(); //starts express
 var myParser = require("body-parser"); //requires body parser to form data 
 var products = require("./public/products.js"); //assigns the product data from the json array into the variable products
 const querystring = require('querystring'); //requires the querystring of the form.  gives utilities to parse and formate the querystring
-//
+var userproducts = require("./public/userproducts.js");
 app.use(myParser.urlencoded({ extended: true })); //tells the system to use JSON
 fs = require('fs'); //imports Node File System or fs
 var filename = 'user_data.json';//assigns the user information from the JSON into the variable filename
-
 //source from Lab 13
 //logs the method and path into the console
 app.all('*', function (request, response, next) {
@@ -20,6 +19,19 @@ app.all('*', function (request, response, next) {
     next();
 });
 
+app.post("/update_cart", function (request, response) { 
+    var qString = querystring.stringify(request.query);
+    var alohaBowlAlreadyInCart = 0;
+        if (alohaBowlAlreadyInCart == 0){
+            itemHasBeenAdded = "Your Item has been added to the cart!";
+            request.query.displayCartMessage = itemHasBeenAdded;
+            qString = querystring.stringify(request.query);
+            response.redirect("./alohabowl.html?" + qString);
+        }    
+        if (alohaBowlAlreadyInCart == 0){
+            userproducts[0] = products[0];
+        }
+});
 
 //source from Lab 13
 //posts the process form data with the action as process_form
@@ -309,5 +321,4 @@ app.post("/register", function (request, response) {
     response.redirect("./registration.html?" + qString);
 
 });
-
 

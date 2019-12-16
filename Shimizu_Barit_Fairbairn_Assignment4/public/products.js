@@ -9,69 +9,79 @@ var products = [
         "model": "Aloha Bowl",
         "price": 9.00,
         "image": "/Images/alohabowl.png",
+        "description": "Acai based blended with strawberries, blueberries and bananas. Bowl comes topped with granola, bananas, strawberries, and honey."
+
     },
     {
         "model": "Mana Bowl",
         "price": 9.00,
         "image": "/Images/manabowl.png",
+        "description": "Peanut butter based blended with bananas. Bowl comes topped with granola, bananas, strawberries, and honey."
+
 
     },
     {
-        "model": "Makai Women's T-Shirt",
+        "model": "Makai Womens T-Shirt",
         "price": 20.00,
-        "image": "",
+        "image": "/Images/makaiwomenst.jpeg",
+        "description": "Style: Men's Basic T-Shirt"
+
 
     },
     {
-        "model": "Makai Men's T-Shirt",
+        "model": "Makai Mens T-Shirt",
         "price": 20.00,
-        "image": "",
+        "image": "/Images/makaimenst.jpeg",
+        "description": ""
     },
     {
         "model": "Makai Womens Longsleeve",
         "price": 25.00,
-        "image": "",
+        "image": "/Images/makaiwomenslong.jpeg",
+        "description": ""
     },
     {
         "model": "Makai Mens Longsleeve",
         "price": 25.00,
-        "image": "",
+        "image": "/Images/makaimenslong.jpeg",
+        "description": ""
     },
     {
-        "model": "Makai Women's Jacket",
+        "model": "Makai Womens Jacket",
         "price": 35.00,
-        "image": "",
+        "image": "/Images/makaiwomensjacket.jpeg",
+        "description": ""
     },
     {
-        "model": "Makai Men's Jacket",
+        "model": "Makai Mens Jacket",
         "price": 35.00,
-        "image": "",
+        "image": "/Images/makaimensjacket.jpeg",
+        "description": ""
     },
     {
         "model": "Makai Hat",
         "price": 30.00,
-        "image": "",
+        "image": "/Images/makaihat.jpeg",
+        "description": ""
     
     },
     {
         "model": "Makai Reusable Bag",
         "price": 15.00,
-        "image": "",
-    },
-    {
-        "model": "Makai Reusable Bag",
-        "price": 15.00,
-        "image": "",
+        "image": "/Images/makaibag.jpeg",
+        "description": ""
     },
     {
         "model": "Makai Key Chain",
         "price": 7.00,
-        "image": "",
+        "image": "/Images/makaichain.jpeg",
+        "description": ""
     },
     {
         "model": "Makai Reusable Water Bottle",
         "price": 15.00,
-        "image": "",
+        "image": "/Images/makaibottle.jpeg",
+        "description": ""
     },
 ];
 
@@ -96,58 +106,30 @@ function displayProducts() {
     for (i = 0; i < 2; i++) {
         document.write(`
             <div class="shop-item">
-            <div class="enlarge">
-                <img class="shop-item-image" src=${products[i].image}>
-            </div>
-            <span class="shop-item-title" id="bowls-title-click${i}">${products[i].model}</span>
-                <span class="shop-item-price">$${products[i].price.toFixed(2)}</span>
+                <a href="${(products[i].model).replace(/\s+/g,'')}.html"><span class="shop-item-title">${products[i].model}</span></a>
+                <div class="enlarge">
+                    <img class="shop-item-image" src=${products[i].image}>
+                </div>
+                <div class="shop-item-details">
+                <a href="${(products[i].model).replace(/\s+/g,'')}.html"><input class="btn btn-primary btn-purchase" type="button" name="purchase_submit" value="View More Info"></a>
+                </div>
             </div>
         `);
     }
-     // Get the modal
-    var modal = document.getElementById("myModal");
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("bowls-title-click0");  
-    var btn2 = document.getElementById("bowls-title-click1");  
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-    btn2.onclick = function() {
-        modal.style.display = "block";
-    }
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-
 }
 
 function displayProducts2(){
-    for (i = 3; i < 8; i++) {
+    for (i = 2; i < 8; i++) {
         document.write(`
             <div class="shop-item">
-            <div class="enlarge">
-                <img class="shop-item-image" src=${products[i].image}>
+            <a href="${(products[i].model).replace(/\s+/g,'')}.html"><span class="shop-item-title">${products[i].model}</span></a>
+                <div class="enlarge">
+                    <img class="shop-item-image" src=${products[i].image}>
+                </div>
+                <div class="shop-item-details">
+                <a href="${(products[i].model).replace(/\s+/g,'')}.html"><input class="btn btn-primary btn-purchase" type="button" name="purchase_submit" value="View More Info"></a>
+                </div>
             </div>
-            <span class="shop-item-title" id="apparel-title-click${i}">${products[i].model}</span>
-            <div class="shop-item-details">
-                <span class="shop-item-price">$${products[i].price.toFixed(2)}</span>
-            </div>
-        </div>
         `);
     }   
 }
@@ -156,17 +138,45 @@ function displayProducts3(){
     for (i = 8; i < 13 ; i++) {
         document.write(`
             <div class="shop-item">
-            <div class="enlarge">
-                <img class="shop-item-image" src=${products[i].image}>
+            <a href="${(products[i].model).replace(/\s+/g,'')}.html"><span class="shop-item-title">${products[i].model}</span></a>
+                <div class="enlarge">
+                    <img class="shop-item-image" src=${products[i].image}>
+                </div>
+                <div class="shop-item-details">
+                <a href="${(products[i].model).replace(/\s+/g,'')}.html"><input class="btn btn-primary btn-purchase" type="button" name="purchase_submit" value="View More Info"></a>
+                </div>
             </div>
-            <span class="shop-item-title" id="accessories-title-click${i}">${products[i].model}</span>
-            <div class="shop-item-details">
-                <span class="shop-item-price">$${products[i].price.toFixed(2)}</span>
-            </div>
-        </div>
         `);
     }   
 }
 
+function displayAlohaBowl() {
+        document.write(`
+            <div class="shop-item">
+                <div class="enlarge">
+                    <img class="shop-item-image" src=${products[0].image}>
+                </div>
+                <div class="shop-item-description">${products[0].description}</div>
+                <div class="shop-item-details">
+                    <span class="shop-item-price">$${products[0].price.toFixed(2)}</span>
+                </div>
+            </div>
+        `);  
+}
 
+function displayManaBowl() {
+        document.write(`
+            <div class="shop-item">
+                <div class="enlarge">
+                    <img class="shop-item-image" src=${products[1].image}>
+                </div>
+                <div class="shop-item-description">${products[1].description}</div>
+                <div class="shop-item-details">
+                    <span class="shop-item-price">$${products[1].price.toFixed(2)}</span>
+                    <label id="quantity${1}_label" class="shop-item-quantity">Quantity</label>
+                    <input class="cart-quantity-input" type="text" name="quantity${1}" onkeyup=checkQuantityTextbox(this); placeholder="0">
+                </div>
+            </div>
+        `); 
+}
 

@@ -275,7 +275,6 @@ html, body {
   color:black;
   text-align: center;
   font-size: 4em;
-  padding-top: 5px;
 
   -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein 3s; /* Firefox < 16 */
@@ -349,7 +348,7 @@ html, body {
 .btn-play {
   display: block;
   margin: 0 auto;
-  color: #2D9CDB;
+  color: rgb(73, 222, 255);
   font-size: 4em;
   border-radius: 50%;
   width: 100px;
@@ -359,15 +358,15 @@ html, body {
 }
 
 .btn-primary {
-  color: white;
-  background-color: rgb(206, 40, 40);
+  color: black;
+  background-color: rgb(0, 229, 255);
   border: none;
   border-radius: .3em;
   font-weight: bold;
 }
 
 .btn-primary:hover {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(36, 148, 196);
 }
 
 /*Fade-in animations source: Peter Mortensen and A.M.K; Stack overflow: https://stackoverflow.com/questions/11679567/using-css-for-a-fade-in-effect-on-page-load*/
@@ -376,14 +375,17 @@ html, body {
 
 .shop-item {
   margin: 50px;
-  background-color: grey;
+  
   position: center;
   border-radius: .9em;
   text-align: center;
+  border-color: red;
+  border: 3px;
   background-position: center;
   background-size: cover;
-  width: 320px;
+  width: 350px;
   height: 350px;
+  padding-bottom: 100px;
 
 
   -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
@@ -471,124 +473,7 @@ html, body {
   text-align: center;
   padding-top: 50px;
 }
-/*Source: W3 Schools Modal: https://www.w3schools.com/howto/howto_css_modals.asp */
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 
-.modal-content > img{
- font-weight: bold;
-  height: 500px;
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-.modal-item-title{
-  float: right;
-  padding-right: 250px;
-  font-weight: bold;
-  font-size: 40px;
-
-}
-
-/*Source: W3 Schools: 
-/* Customize the label (the container) */
-.container-select {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* Hide the browser's default checkbox */
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-/* Create a custom checkbox */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-}
-
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-
-/* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: #2196F3;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the checkmark/indicator */
-.container .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
 /*product description*/
 
 .shop-item-description{
@@ -605,6 +490,7 @@ html, body {
   font-weight: bold;
   font-size: 30px;
   font-family: "Metal Mania", verdana;
+
 }
 
 /*quantity text*/
@@ -650,9 +536,46 @@ html, body {
   display: block;
   margin: 40px auto 80px auto;
   font-size: 1.75em;
-  font-family: "Metal Mania", verdana;
+  font-family: "Montserrat", verdana;
 }
 
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 /*Source from: w3 Schools: https://www.w3schools.com/css/css3_animations.asp*/
 /*enlarges image on mouse hover*/
 

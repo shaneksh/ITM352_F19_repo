@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="products.js"></script>
+    <script src="addtocart.js"></script>
+   <script src="store.js"></script>
+   <script src="userproducts.js"></script>
+</head>
+<script>
+    window.onload = function () { //when the page loads
+        let params = (new URL(document.location)).searchParams; //gives access to the get decoded query arguments in the URL.
+
+        if (params.has("displayCartMessage")) {
+            document.write("hello");
+        }
+    }
+</script>
+<body>
+        <header class="main-header">
+            <nav class="main-nav nav">
+                <ul>
+                    <li><a href="index.html">H O M E</a></li>
+                    <li><img src="Images/brandlogo.png" class="brandlogo"></li>
+                    <li><a href="store.html">S H O P</a></li>
+                    <li><a href="cart.html">C A R T</a></li>
+    
+                </ul>
+            </nav>
+            <h1 class="title-name title-name-large">CART</h1>
+        </header>
+        <section class="container content-section">
+                <div class="shop-items">
+                    <!--calls function to display products on page-->
+                    <script>displayUserProducts();</script>
+                </div>
+        </section>
+    </body>
+    
+</html>

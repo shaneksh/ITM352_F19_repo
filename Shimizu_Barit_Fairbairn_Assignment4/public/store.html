@@ -16,17 +16,7 @@
         let params = (new URL(document.location)).searchParams;
         if (params.has("quantityError")) { //if there are errors
             alert(params.get('quantityError')); //alert appropriate quantity error
-        }
-
-        function updatePrice() {
-            var alohaprice = 9.00;
-            if (document.getElementById("blueberry-checked").checked == true){
-                alohaprice = alohaprice + 1.00;
-            }
-            document.getElementById("aloha-bowl-price").innerHTML = alohaprice;
-        }
-    
-       
+        }   
     </script>
 
 </head>
@@ -38,86 +28,13 @@
                 <li><a href="index.html">H O M E</a></li>
                 <li><img src="Images/brandlogo.png" class="brandlogo"></li>
                 <li><a href="store.html">S H O P</a></li>
+                <li><a href="cart.html">C A R T</a></li>
+
             </ul>
         </nav>
         <h1 class="title-name title-name-large">SHOP</h1>
     </header>
     <section class="container content-section">
-
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-
-            <!-- Modal content -->
-            <div class="modal-content">
-            <span class="close">&times;</span>
-                <img src="Images/alohabowl.png">
-            <div class="modal-item-title">Aloha Bowl</div>
-            <div class="style-label">
-            <div class="product-description">
-                Acai based blended with strawberries, blueberries and bananas. 
-                Bowl comes topped with granola, bananas, strawberries, and honey. 
-            </div>
-            <div class="ad-ons">Want Extra?:</div>
-                <label class="container-select" id="blueberry-checked" onclick="updatePrice()">Blueberries + $1.00
-                        <input type="checkbox" checked="checked">
-                        <span class="checkmark"></span>
-                    </label>
-                    
-                    <label class="container-select" id="banana-checked">Banana + $1.00
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    
-                    <label class="container-select" id="kiwi-checked">Kiwis + $1.00
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    
-                    <label class="container-select" id="strawberry-checked">Strawberries + $1.00
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-
-                    <label class="container-select" id="granola-checked">Granola + $1.00
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-
-                    <label class="container-select" id="honey-checked">Honey + $1.00
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-
-                    <label class="container-select" id="peanut-checked">Peanut Butter + $1.00
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-
-                    <label class="container-select" id="coconut-checked">Coconut Shavings + $0.50
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-
-                    <label class="container-select" id="bee-checked">Bee Pollen + $0.50
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-
-                    <label class="container-select" id="chia-checked">Chia Seeds+ $0.50
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                <div class="product-price" id="aloha-bowl-price"></div>
-                <button class="addtocart-style" type="submit" name="add-to-cart">Add To Cart</button>
-            </div>
-        
-        </div>
-
-
-
-        <!--creates an HTML form and the action upon submission is process_form, browser will send the data to the web server to be processed with POST.-->
-        <form name="product_selection_form" action="/process_form" method="POST">
             <h2 class="section-header" id="bowls-section">Bowls</h2>
             <div class="shop-items">
                 <!--calls function to display products on page-->
@@ -133,9 +50,6 @@
                 <!--calls function to display products on page-->
                 <script>displayProducts3();</script>
             </div>
-            <!--creates a submit button that submits the form-->
-            <input class="btn btn-primary btn-purchase" type="submit" name="purchase_submit" value="P U R C H A S E">
-        </form>
     </section>
 </body>
 
