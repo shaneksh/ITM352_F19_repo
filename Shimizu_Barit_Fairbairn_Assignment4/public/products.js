@@ -24,64 +24,65 @@ var products = [
         "model": "Makai Womens T-Shirt",
         "price": 20.00,
         "image": "/Images/makaiwomenst.jpeg",
-        "description": "Style: Women's Basic T-Shirt"
-
-
+        "description": "<br> Style: Women Basic T-Shirt <br> This basic t-shirt features a relaxed fit for the female shape. <br> Size and Fit: Model is 5 ft 7 in and is wearing a small. <br> Standard fit: Fits true to size. <br> Fabric and Care: 100 percent cotton. Double-needle hemmed sleeves and bottom. Machine wash cold. Imported."
     },
     {
         "model": "Makai Mens T-Shirt",
         "price": 20.00,
         "image": "/Images/makaimenst.jpeg",
-        "description": ""
+        "description": "<br> Style: Men Basic T-Shirt <br>Comfortable, casual and loose fitting, our heavyweight t-shirt will easily become a closet staple. <br> Size and Fit: Model is 6 ft 1 in and is wearing a medium. <br> Standard fit: Fits true to size. <br> Fabric and Care: 100 percent cotton. Double-needle hemmed sleeves and bottom. Machine wash cold, tumble dry low. Imported."
+        
     },
     {
         "model": "Makai Womens Longsleeve",
         "price": 25.00,
         "image": "/Images/makaiwomenslong.jpeg",
-        "description": ""
+        "description": "<br> Style: Women Basic Long Sleeve T-Shirt. <br> Comfortable, casual and loose fitting, our long-sleeve heavyweight t-shirt will quickly become one of your favorites. <br> Size and Fit: Model is 5 ft 9 in and wearing a small. <br> Standard fit: Runs true to size. <br> Fabric and Care: 100 percent cotton. Soft, tag-free neck label with a lay flat collar for comfort. Shoulder-to-shoulder tape for durability. Imported. Preshrunk. Machine wash cold"
+        
     },
     {
         "model": "Makai Mens Longsleeve",
         "price": 25.00,
         "image": "/Images/makaimenslong.jpeg",
-        "description": ""
+        "description": "<br> Style: Men Basic Long Sleeve T-Shirt. <br> Comfortable, casual and loose fitting, our long-sleeve heavyweight t-shirt will quickly become one of your favorites. <br> Size and Fit: Model is 6 ft 0 in and wearing a medium. <br> Standard fit: Runs true to size. <br> Fabric and Care: 100 percent cotton. Soft, tag-free neck label with a lay flat collar for comfort. Shoulder-to-shoulder tape for durability. Imported. Preshrunk. Machine wash cold"
+        
     },
     {
         "model": "Makai Womens Jacket",
         "price": 35.00,
         "image": "/Images/makaiwomensjacket.jpeg",
-        "description": ""
+        "description": "<br> Style: Women Basic Hooded Sweatshirt. <br> Enjoy the comfort of this warm and toasty pullover hoodie. <br> Size and Fit: Model is 5 ft 9 in and wearing a small. <br> Standard fit: Runs true to size. <br> Fabric and Care: 10oz. cotton-poly blend with a 100 percent cotton face. Roomy front pouch pocket and hood. Imported. Machine wash cold. Tumble dry Low."
     },
     {
         "model": "Makai Mens Jacket",
         "price": 35.00,
         "image": "/Images/makaimensjacket.jpeg",
-        "description": ""
+        "description": "<br> Style: Men Basic Hooded Sweatshirt. <br> Enjoy the comfort of this warm and toasty pullover hoodie. <br> Size and Fit: Model is 6 ft 2 in and wearing a large. <br> Standard fit: Runs true to size. <br> Fabric and Care: 10oz. cotton-poly blend with a 100 percent cotton face. Roomy front pouch pocket and hood. Imported. Machine wash cold. Tumble dry Low."
     },
     {
         "model": "Makai Hat",
         "price": 30.00,
         "image": "/Images/makaihat.jpeg",
-        "description": ""
+        "description": "<br> Style: Alternative Apparel Basic Adjustable Cap. <br> Want a good-looking comfortable hat? This one is for you. From Alternative Apparel, this chino twill cap has a pre-curved bill, cloth strap and an antique brass slide buckle closure with tuck-in grommet, so it fits well on anyone. <br> 100 percent  cotton woven. <br> Unstructured. <br> Low profile. <br> Antiqued brass side buckle. <br> Curved visor."
     
     },
     {
         "model": "Makai Reusable Bag",
         "price": 15.00,
         "image": "/Images/makaibag.jpeg",
-        "description": ""
+        "description": "<br> Style: Reusable Bag <br> Go green and save the planet with our reusable grocery bag! Made with a lightweight polyester fabric, this bag folds easily to fit in your purse or pocket. <br> Dimensions: 12 in l x 5 in w x 16 in h <br>  Made with lightweight polyester fabric. <br> Folds up with snap closure. <br> Holds up to 50 lbs."
     },
     {
         "model": "Makai Key Chain",
         "price": 7.00,
         "image": "/Images/makaichain.jpeg",
-        "description": ""
+        "description": "<br> Style: Basic Button Keychain <br> Dimensions: Diameter: 2.25 in,  Depth: 0.19in, Weight: 0.25 oz. <br> Waterproof"
     },
     {
         "model": "Makai Reusable Water Bottle",
         "price": 15.00,
         "image": "/Images/makaibottle.jpeg",
-        "description": ""
+        "description": "<br> Size: Water Bottle. <br> 18 oz. bottle. <br> Made with stainless steel. <br> Height: 8.67 in Weight: 8.7 oz.<br> 100 percent BPA free.<br> Comes with a threaded lid. <br> Lightweight and durable, crack proof, spill proof. <br> Does not give beverages a plastic taste. <br> Hand wash only. Not recommended for dishwasher. <br> Safe for refrigerator, but not freezer. <br> Certified free of harmful chemicals."
     },
 ];
 
@@ -105,7 +106,7 @@ function welcome() {
 //aloha bowl
 function setCookie0(cname,cvalue,exdays) {
     var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    d.setTime(d.getTime() + (exdays*10000));
     var expires = "expires=" + d.toGMTString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
@@ -127,67 +128,53 @@ function setCookie0(cname,cvalue,exdays) {
   }
 
 function checkCookie0() {
-    setCookie0("alohabowl", products[0], 30);
+    setCookie0("alohabowl", JSON.stringify(products[0]), 30);
 }
 function checkCookie1(){
-    setCookie0("manabowl", products[1], 30);
+    setCookie0("manabowl", JSON.stringify(products[1]), 30);
 
 }
 function checkCookie2(){
-    setCookie0("womensshirt", products[2], 30);
+    setCookie0("womensshirt", JSON.stringify(products[2]), 30);
     
 }
 function checkCookie3(){
-    setCookie0("mensshirt", products[3], 30);
+    setCookie0("mensshirt", JSON.stringify(products[3]), 30);
     
 }
 function checkCookie4(){
-    setCookie0("womenssleeve", products[4], 30);
+    setCookie0("womenssleeve", JSON.stringify(products[4]), 30);
     
 }
 function checkCookie5(){
-    setCookie0("menssleeve", products[5], 30);
+    setCookie0("menssleeve", JSON.stringify(products[5]), 30);
 
 }
 function checkCookie6(){
-    setCookie0("womensjacket", products[6], 30);
+    setCookie0("womensjacket", JSON.stringify(products[6]), 30);
    
 }
 function checkCookie7(){
-    setCookie0("mensjacket", products[7], 30);
+    setCookie0("mensjacket", JSON.stringify(products[7]), 30);
    
 }
 function checkCookie8(){
-    setCookie0("makaihat", products[8], 30);
+    setCookie0("makaihat", JSON.stringify(products[8]), 30);
     
 }
 function checkCookie9(){
-    setCookie0("makaibag", products[9], 30);
+    setCookie0("makaibag", JSON.stringify(products[9]), 30);
     
 }
 function checkCookie10(){
-    setCookie0("makaichain", products[10], 30);
+    setCookie0("makaichain", JSON.stringify(products[10]), 30);
     
 }
 function checkCookie11(){
-    setCookie0("makaibottle", products[11], 30);
+    setCookie0("makaibottle", JSON.stringify(products[11]), 30);
    
 }
 
-
-  function updateRecent0(){
-    document.write(`
-            <div class="shop-item">
-                <div class="enlarge">
-                    <img class="shop-item-image" src=${products[0].image}>
-                </div>
-                <div class="shop-item-description">${products[0].description}</div>
-                <div class="shop-item-details">
-                    <span class="shop-item-price">$${products[0].price.toFixed(2)}</span>
-                </div>
-            </div>
-    `);
-}
 
 //<label id="quantity${i}_label" class="shop-item-quantity">Quantity</label>
 //<input class="cart-quantity-input" type="text" name="quantity${i}" onkeyup=checkQuantityTextbox(this); placeholder="0">
@@ -195,7 +182,7 @@ function displayProducts() {
     for (i = 0; i < 2; i++) {
         document.write(`
             <div class="shop-item">
-                <a href="${(products[i].model).replace(/\s+/g,'')}.html"><span class="shop-item-title">${products[i].model}</span></a>
+                <a href="${(products[i].model).replace(/\s+/g,'')}.html" onclick="checkCookie${i}()" ><span class="shop-item-title">${products[i].model}</span></a>
                 <div class="enlarge">
                     <img class="shop-item-image" src=${products[i].image}>
                 </div>
@@ -211,7 +198,7 @@ function displayProducts2(){
     for (i = 2; i < 8; i++) {
         document.write(`
             <div class="shop-item">
-            <a href="${(products[i].model).replace(/\s+/g,'')}.html"><span class="shop-item-title">${products[i].model}</span></a>
+            <a href="${(products[i].model).replace(/\s+/g,'')}.html" onclick="checkCookie${i}()"><span class="shop-item-title">${products[i].model}</span></a>
                 <div class="enlarge">
                     <img class="shop-item-image" src=${products[i].image}>
                 </div>
@@ -227,7 +214,7 @@ function displayProducts3(){
     for (i = 8; i < 13 ; i++) {
         document.write(`
             <div class="shop-item">
-            <a href="${(products[i].model).replace(/\s+/g,'')}.html"><span class="shop-item-title">${products[i].model}</span></a>
+            <a href="${(products[i].model).replace(/\s+/g,'')}.html" onclick="checkCookie${i}()"><span class="shop-item-title">${products[i].model}</span></a>
                 <div class="enlarge">
                     <img class="shop-item-image" src=${products[i].image}>
                 </div>

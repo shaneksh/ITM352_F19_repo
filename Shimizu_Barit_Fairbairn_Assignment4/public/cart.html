@@ -1,3 +1,9 @@
+<!--
+Authors: Shane Shimizu, Daniel Francis Barit, Kiara Fairbairn
+File Description: Aloha Bowl Page
+Date: December 19, 2019
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +21,7 @@
 </head>
 <script>
 
-
+    //parse the localStorage with respective name and store in variable for each product
     storedUsersCart = JSON.parse(localStorage.getItem("usersCart"));
     storedUsersCart2 = JSON.parse(localStorage.getItem("usersCart2"));
     storedUsersCart3 = JSON.parse(localStorage.getItem("usersCart3"));
@@ -29,6 +35,7 @@
     storedUsersCart11 = JSON.parse(localStorage.getItem("usersCart11"));
     storedUsersCart12 = JSON.parse(localStorage.getItem("usersCart12"));
 
+    //push the object stored in the previously declared variables in storedUsersCartArray
     storedUsersCartArray.push(storedUsersCart);
     storedUsersCartArray.push(storedUsersCart2);
     storedUsersCartArray.push(storedUsersCart3);
@@ -42,13 +49,16 @@
     storedUsersCartArray.push(storedUsersCart11);
     storedUsersCartArray.push(storedUsersCart12);
 
+    //if the storedUsersCartArray is not empty
     if (storedUsersCartArray != null) {
-        var updatedCartArray = storedUsersCartArray.filter(function (el) { return el; });
+        var updatedCartArray = storedUsersCartArray.filter(function (el) { return el; }); //filter/get rid of extra spaces/null spaces in the array
 
     }
 
+    //functiont to display the products added to cart
     function displayUserProducts() {
-        for (i = 0; i < updatedCartArray.length; i++) {
+        for (i = 0; i < updatedCartArray.length; i++) { //for loop to display product information based on the array length
+            //note: onkeyup calls function to check if the quantity entered by the user is valid
             document.write(`
             <div class="shop-item">
             <span class="shop-item-title">${updatedCartArray[i].model}</span>
@@ -66,10 +76,11 @@
         }
     }
 
+    //function to clear localStorage or items added to cart
     function clearCart() {
-        localStorage.clear();
-        alert("cart has been cleared");
-        window.location.reload();
+        localStorage.clear(); //clear localStorage function
+        alert("cart has been cleared"); //alert the user the cart is cleared
+        window.location.reload(); //reload the window to update the page to show no items are in cart
     }
 
     let params = (new URL(document.location)).searchParams;
@@ -77,59 +88,125 @@
         alert(params.get('quantityError')); //alert appropriate quantity error
     }
 
-    //Source W3 Schools Cookies: https://www.w3schools.com/js/js_cookies.asp
+
+    //create an initial array to push products stored in cookies
     var recentViewArray = [];
-    //aloha bowl
-    function setCookie0(cname, cvalue, exdays) {
-        var d = new Date();
-        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-        var expires = "expires=" + d.toGMTString();
-        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    //create another array that filters null spaces from the recentViewArray
+    var updatedRecentArray = [];
+
+    //Source W3 Schools Cookies: https://www.w3schools.com/js/js_cookies.asp
+    //function to set cookie
+    function setCookie0(cname, cvalue, exdays) { //passes the name of the cookie, the value of the cookie, and the experation date for cookie as parameters
+        var d = new Date(); //declare d as the current date
+        d.setTime(d.getTime() + (exdays * 10000)); //sets the expiration of cookie to 5 minutes after being set
+        var expires = "expires=" + d.toGMTString(); //delcares expires as convert date object to string and returns it
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/"; //sets/documents the cookie and concatnates with the name, value, expiration, and path of the cookie
     }
 
-    function getCookie0(cname) {
-        var name = cname + "=";
-        var decodedCookie = decodeURIComponent(document.cookie);
-        var ca = decodedCookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') {
-                c = c.substring(1);
+    //function to retrieve the cookie
+    function getCookie0(cname) { //uses cname (cookie name) as parameter
+        var name = cname + "="; //declares name with the text to look for the cookie name + "="
+        var decodedCookie = decodeURIComponent(document.cookie); //decodes the cookie to manage cookies with special characters
+        var ca = decodedCookie.split(';'); //split the cookie on semi-colons into an array
+        for (var i = 0; i < ca.length; i++) { //for thje lengh of ca/decoded cookie
+            var c = ca[i]; //delcare c and read out each value
+            while (c.charAt(0) == ' ') {// while index at specified string == 0
+                c = c.substring(1); //c now is now given string 
             }
-            if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
+            if (c.indexOf(name) == 0) { //if the cookie is located at the 0 index
+                return c.substring(name.length, c.length); //return the cookie value
             }
         }
-        return "";
+        return ""; //return "" if the cookie does not exist
     }
 
-    var user='';
-    function checkCookie0() {
+    //function that checks to see if a cookie is set and gets them
+    function checkTheseCookies0() {
+
+        //declare variables and gets the cookie with the respective name with product informaiton
         user = getCookie0("alohabowl");
-        if (user == "") {
-           document.write('No recent items Viewed <br> Recently viewed will clear after 30 min');
-        } else {
-            if (user != "" && user != null) {
-                setCookie0("alohabowl", JSON.stringify(products[0]), 30);
-                final = JSON.parse(user);
-                recentViewArray.push(final);
-                document.write(`
-                    <div class="shop-item">
-                        <div class="enlarge">
-                            <img class="shop-item-image" src=${recentViewArray[0].image}>
+        user1 = getCookie0("manabowl");
+        user2 = getCookie0("womensshirt");
+        user3 = getCookie0("mensshirt");
+        user4 = getCookie0("womenssleeve");
+        user5 = getCookie0("menssleeve");
+        user6 = getCookie0("womensjacket");
+        user7 = getCookie0("mensjacket");
+        user8 = getCookie0("makaihat");
+        user9 = getCookie0("makaibag");
+        user10 = getCookie0("makaichain");
+        user11 = getCookie0("makaibottle");
+
+        
+        if (user != "" && user != null) {
+            final = JSON.parse(user);
+            recentViewArray.push(final);
+        }
+        if (user1 != "" && user1 != null) {
+            final1 = JSON.parse(user1);
+            recentViewArray.push(final1);
+        }
+        if (user2 != "" && user2 != null) {
+            final2 = JSON.parse(user2);
+            recentViewArray.push(final2);
+        }
+        if (user3 != "" && user3 != null) {
+            final3 = JSON.parse(user3);
+            recentViewArray.push(final3);
+        }
+        if (user4 != "" && user4 != null) {
+            final4 = JSON.parse(user4);
+            recentViewArray.push(final4);
+        }
+        if (user5 != "" && user5 != null) {
+            final5 = JSON.parse(user5);
+            recentViewArray.push(final5);
+        }
+        if (user6 != "" && user6 != null) {
+            final6 = JSON.parse(user6);
+            recentViewArray.push(final6);
+        }
+        if (user7 != "" && user7 != null) {
+            final7 = JSON.parse(user7);
+            recentViewArray.push(final7);
+        }
+        if (user8 != "" && user8 != null) {
+            final8 = JSON.parse(user8);
+            recentViewArray.push(final8);
+        }
+        if (user9 != "" && user9 != null) {
+            final9 = JSON.parse(user9);
+            recentViewArray.push(final9);
+        }
+        if (user10 != "" && user10 != null) {
+            final10 = JSON.parse(user10);
+            recentViewArray.push(final10);
+        }
+        if (user11 != "" && user11 != null) {
+            final11 = JSON.parse(user11);
+            recentViewArray.push(final11);
+        }
+
+        if (recentViewArray != null) {
+            updatedRecentArray = recentViewArray.filter(function (el) { return el; });
+        }
+        if (updatedRecentArray.length == 0) {
+            document.write('No recent items viewed');
+        }
+        for (i = 0; i < updatedRecentArray.length; i++) {
+            document.write(`
+                        <div class="shop-item">
+                            <div class="enlarge">
+                                <a href="${(updatedRecentArray[i].model).replace(/\s+/g, '')}.html"><span class="shop-item-title">${updatedRecentArray[i].model}</span></a>
+                                <img class="shop-item-image" src=${updatedRecentArray[i].image}>
+                            </div>
+                            <div class="shop-item-details">
+                                <span class="shop-item-price">$${updatedRecentArray[i].price.toFixed(2)}</span>
+                            </div>
                         </div>
-                        <div class="shop-item-details">
-                            <span class="shop-item-price">$${recentViewArray[0].price.toFixed(2)}</span>
-                        </div>
-                    </div>
-                `);
-            }
+                    `);
         }
     }
-
-
-
-
 
 </script>
 
@@ -163,9 +240,10 @@
         <button class="btn btn-primary btn-purchase" onclick="clearCart()">Clear Cart</button>
         <section class="container content-section">
             <h2 class="section-header" id="bowls-section">Recently Viewed Items</h2>
+            <p style="text-align: center;">Recently Viewed List Will Clear After 5 min</p>
             <div class="shop-items">
                 <!--calls function to display products on page-->
-                <script>checkCookie0()</script>
+                <script>checkTheseCookies0()</script>
             </div>
         </section>
     </section>
