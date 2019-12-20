@@ -24,7 +24,7 @@ var products = [
         "model": "Makai Womens T-Shirt",
         "price": 20.00,
         "image": "/Images/makaiwomenst.jpeg",
-        "description": "Style: Men's Basic T-Shirt"
+        "description": "Style: Women's Basic T-Shirt"
 
 
     },
@@ -101,6 +101,94 @@ function welcome() {
 //for loop that displays products stored in the JSON array onto the products.html page when the function is called
 //<div class="shop-item-description">${products[i].description}</div>
 //
+//Source W3 Schools Cookies: https://www.w3schools.com/js/js_cookies.asp
+//aloha bowl
+function setCookie0(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+  
+  function getCookie0(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+function checkCookie0() {
+    setCookie0("alohabowl", products[0], 30);
+}
+function checkCookie1(){
+    setCookie0("manabowl", products[1], 30);
+
+}
+function checkCookie2(){
+    setCookie0("womensshirt", products[2], 30);
+    
+}
+function checkCookie3(){
+    setCookie0("mensshirt", products[3], 30);
+    
+}
+function checkCookie4(){
+    setCookie0("womenssleeve", products[4], 30);
+    
+}
+function checkCookie5(){
+    setCookie0("menssleeve", products[5], 30);
+
+}
+function checkCookie6(){
+    setCookie0("womensjacket", products[6], 30);
+   
+}
+function checkCookie7(){
+    setCookie0("mensjacket", products[7], 30);
+   
+}
+function checkCookie8(){
+    setCookie0("makaihat", products[8], 30);
+    
+}
+function checkCookie9(){
+    setCookie0("makaibag", products[9], 30);
+    
+}
+function checkCookie10(){
+    setCookie0("makaichain", products[10], 30);
+    
+}
+function checkCookie11(){
+    setCookie0("makaibottle", products[11], 30);
+   
+}
+
+
+  function updateRecent0(){
+    document.write(`
+            <div class="shop-item">
+                <div class="enlarge">
+                    <img class="shop-item-image" src=${products[0].image}>
+                </div>
+                <div class="shop-item-description">${products[0].description}</div>
+                <div class="shop-item-details">
+                    <span class="shop-item-price">$${products[0].price.toFixed(2)}</span>
+                </div>
+            </div>
+    `);
+}
+
 //<label id="quantity${i}_label" class="shop-item-quantity">Quantity</label>
 //<input class="cart-quantity-input" type="text" name="quantity${i}" onkeyup=checkQuantityTextbox(this); placeholder="0">
 function displayProducts() {
@@ -112,7 +200,7 @@ function displayProducts() {
                     <img class="shop-item-image" src=${products[i].image}>
                 </div>
                 <div class="shop-item-details">
-                <a href="${(products[i].model).replace(/\s+/g,'')}.html"><input class="btn btn-primary btn-purchase" type="button" name="purchase_submit" value="View More Info"></a>
+                <a href="${(products[i].model).replace(/\s+/g,'')}.html"><input class="btn btn-primary btn-purchase" type="button" name="purchase_submit" value="View More Info" onclick="checkCookie${i}()"></a>
                 </div>
             </div>
         `);
@@ -128,7 +216,7 @@ function displayProducts2(){
                     <img class="shop-item-image" src=${products[i].image}>
                 </div>
                 <div class="shop-item-details">
-                <a href="${(products[i].model).replace(/\s+/g,'')}.html"><input class="btn btn-primary btn-purchase" type="button" name="purchase_submit" value="View More Info"></a>
+                <a href="${(products[i].model).replace(/\s+/g,'')}.html"><input class="btn btn-primary btn-purchase" type="button" name="purchase_submit" value="View More Info" onclick="checkCookie${i}()"></a>
                 </div>
             </div>
         `);
@@ -144,7 +232,7 @@ function displayProducts3(){
                     <img class="shop-item-image" src=${products[i].image}>
                 </div>
                 <div class="shop-item-details">
-                <a href="${(products[i].model).replace(/\s+/g,'')}.html"><input class="btn btn-primary btn-purchase" type="button" name="purchase_submit" value="View More Info"></a>
+                <a href="${(products[i].model).replace(/\s+/g,'')}.html"><input class="btn btn-primary btn-purchase" type="button" name="purchase_submit" value="View More Info" onclick="checkCookie${i}()"></a>
                 </div>
             </div>
         `);
@@ -174,6 +262,146 @@ function displayManaBowl() {
             <div class="shop-item-description">${products[1].description}</div>
             <div class="shop-item-details">
                 <span class="shop-item-price">$${products[1].price.toFixed(2)}</span>
+            </div>
+        </div>
+    `);  
+}
+
+function displayMakaiWomensShirt() {
+    document.write(`
+        <div class="shop-item">
+            <div class="enlarge">
+                <img class="shop-item-image" src=${products[2].image}>
+            </div>
+            <div class="shop-item-description">${products[2].description}</div>
+            <div class="shop-item-details">
+                <span class="shop-item-price">$${products[2].price.toFixed(2)}</span>
+            </div>
+        </div>
+    `);  
+}
+
+function displayMakaiMensShirt() {
+    document.write(`
+        <div class="shop-item">
+            <div class="enlarge">
+                <img class="shop-item-image" src=${products[3].image}>
+            </div>
+            <div class="shop-item-description">${products[3].description}</div>
+            <div class="shop-item-details">
+                <span class="shop-item-price">$${products[3].price.toFixed(2)}</span>
+            </div>
+        </div>
+    `);  
+}
+
+function displayMakaiWomensSleeve() {
+    document.write(`
+        <div class="shop-item">
+            <div class="enlarge">
+                <img class="shop-item-image" src=${products[4].image}>
+            </div>
+            <div class="shop-item-description">${products[4].description}</div>
+            <div class="shop-item-details">
+                <span class="shop-item-price">$${products[4].price.toFixed(2)}</span>
+            </div>
+        </div>
+    `);  
+}
+
+function displayMakaiMensSleeve() {
+    document.write(`
+        <div class="shop-item">
+            <div class="enlarge">
+                <img class="shop-item-image" src=${products[5].image}>
+            </div>
+            <div class="shop-item-description">${products[5].description}</div>
+            <div class="shop-item-details">
+                <span class="shop-item-price">$${products[5].price.toFixed(2)}</span>
+            </div>
+        </div>
+    `);  
+}
+
+function displayMakaiWomensJacket() {
+    document.write(`
+        <div class="shop-item">
+            <div class="enlarge">
+                <img class="shop-item-image" src=${products[6].image}>
+            </div>
+            <div class="shop-item-description">${products[6].description}</div>
+            <div class="shop-item-details">
+                <span class="shop-item-price">$${products[6].price.toFixed(2)}</span>
+            </div>
+        </div>
+    `);  
+}
+
+function displayMakaiMensJacket() {
+    document.write(`
+        <div class="shop-item">
+            <div class="enlarge">
+                <img class="shop-item-image" src=${products[7].image}>
+            </div>
+            <div class="shop-item-description">${products[7].description}</div>
+            <div class="shop-item-details">
+                <span class="shop-item-price">$${products[7].price.toFixed(2)}</span>
+            </div>
+        </div>
+    `);  
+}
+
+function displayMakaiHat() {
+    document.write(`
+        <div class="shop-item">
+            <div class="enlarge">
+                <img class="shop-item-image" src=${products[8].image}>
+            </div>
+            <div class="shop-item-description">${products[8].description}</div>
+            <div class="shop-item-details">
+                <span class="shop-item-price">$${products[8].price.toFixed(2)}</span>
+            </div>
+        </div>
+    `);  
+}
+
+function displayMakaiBag() {
+    document.write(`
+        <div class="shop-item">
+            <div class="enlarge">
+                <img class="shop-item-image" src=${products[9].image}>
+            </div>
+            <div class="shop-item-description">${products[9].description}</div>
+            <div class="shop-item-details">
+                <span class="shop-item-price">$${products[9].price.toFixed(2)}</span>
+            </div>
+        </div>
+    `);  
+}
+
+function displayMakaiChain() {
+    document.write(`
+        <div class="shop-item">
+            <div class="enlarge">
+                <img class="shop-item-image" src=${products[10].image}>
+            </div>
+            <div class="shop-item-description">${products[10].description}</div>
+            <div class="shop-item-details">
+                <span class="shop-item-price">$${products[10].price.toFixed(2)}</span>
+            </div>
+        </div>
+    `);  
+}
+
+function displayMakaiBottle() {
+    document.write(`
+        <div class="shop-item">
+            <div class="enlarge">
+                <img class="shop-item-image" src=${products[11].image}>
+            </div>
+            <div class="shop-item-description">${products[11].description}</div>
+            <div class="shop-item-details">
+                <span class="shop-item-price">$${products[11].price.toFixed(2)}</span>
             </div>
         </div>
     `);  

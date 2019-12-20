@@ -117,10 +117,16 @@ app.post("/login", function (request, response) {
     inputUser = request.body.username;
     inputPass = request.body.password;
     the_username = request.body.username.toLowerCase(); //give me username from input and assigning it
-
+    var error = null;
+    var stickInput = null;
     if (typeof users_reg_data[the_username] != 'undefined') { //ask object if it has property called username, if it does, it wont be udefined. check to see if it exists
         if (users_reg_data[the_username].password == request.body.password) {//check if the password they entered matches what was stored
 
+            if (request.body.promocode == 'M4KA1'){
+                disCountProducts = 'foo';                
+                request.query.displayDiscount = disCountProducts;
+
+            }
             //assigns the username, email and fullname into variables
             loginFullname = users_reg_data[the_username].name;
             loginEmail = users_reg_data[the_username].email;
@@ -170,16 +176,14 @@ app.post("/login", function (request, response) {
     } else {
         error = the_username +"<style=word-spacing: 5px>: </style>" + "<font color='red'>is not registered</font>";
         stickInput = inputUser; //assigns the username the user entered into stick input
+         //retrieve variable values and puts it into query
+        request.query.LoginError = error;
+        request.query.logStickInput = stickInput;
+        //string query together
+        qString = querystring.stringify(request.query);
+        //redirect user back to login page with qString
+        response.redirect("./login.html?" + qString);
     }
-
-    //retrieve variable values and puts it into query
-    request.query.LoginError = error;
-    request.query.logStickInput = stickInput;
-    //string query together
-    qString = querystring.stringify(request.query);
-    //redirect user back to login page with qString
-    response.redirect("./login.html?" + qString);
-
 
 
 });

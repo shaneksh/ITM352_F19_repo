@@ -10,9 +10,75 @@
 	var quantities = [];//makes the variables quantities into an array
 	// form was submitted so process the invoice
 	storedUsersCart = JSON.parse(localStorage.getItem("usersCart"));
-	storedUsersCartArray = [];
-	storedUsersCartArray.push(storedUsersCart);
+	storedUsersCart2 = JSON.parse(localStorage.getItem("usersCart2"));
+	storedUsersCart3 = JSON.parse(localStorage.getItem("usersCart3"));
+	storedUsersCart4 = JSON.parse(localStorage.getItem("usersCart4"));
+	storedUsersCart5 = JSON.parse(localStorage.getItem("usersCart5"));
+	storedUsersCart6 = JSON.parse(localStorage.getItem("usersCart6"));
+	storedUsersCart7 = JSON.parse(localStorage.getItem("usersCart7"));     
+	storedUsersCart8 = JSON.parse(localStorage.getItem("usersCart8"));
+	storedUsersCart9 = JSON.parse(localStorage.getItem("usersCart9"));
+	storedUsersCart10 = JSON.parse(localStorage.getItem("usersCart10"));
+	storedUsersCart11 = JSON.parse(localStorage.getItem("usersCart11"));
+	storedUsersCart12 = JSON.parse(localStorage.getItem("usersCart12"));
 
+	function showDiscountSent(){
+		var foo;
+	}
+	
+	if (params.has("displayDiscount")){
+		var existsThis = true;
+		function showDiscountSent(){
+			if (existsThis == true){
+				document.write('2$ Discount Applied at Login');
+			}
+		}
+		products[0].price = 7.00;
+		products[1].price = 7.00;
+
+		localStorage.setItem("usersCartone", JSON.stringify(products[0]));
+		localStorage.setItem("usersCarttwo", JSON.stringify(products[1]));
+
+		storedUsersCart = JSON.parse(localStorage.getItem("usersCartone"));
+		storedUsersCart2 = JSON.parse(localStorage.getItem("usersCarttwo"));
+
+		storedUsersCartArray.push(storedUsersCart);
+		storedUsersCartArray.push(storedUsersCart2);
+		storedUsersCartArray.push(storedUsersCart3);
+		storedUsersCartArray.push(storedUsersCart4);
+		storedUsersCartArray.push(storedUsersCart5);
+		storedUsersCartArray.push(storedUsersCart6);
+		storedUsersCartArray.push(storedUsersCart7);
+		storedUsersCartArray.push(storedUsersCart8);
+		storedUsersCartArray.push(storedUsersCart9);
+		storedUsersCartArray.push(storedUsersCart10);
+		storedUsersCartArray.push(storedUsersCart11);
+		storedUsersCartArray.push(storedUsersCart12);
+
+	} else {
+		storedUsersCartArray.push(storedUsersCart);
+		storedUsersCartArray.push(storedUsersCart2);
+		storedUsersCartArray.push(storedUsersCart3);
+		storedUsersCartArray.push(storedUsersCart4);
+		storedUsersCartArray.push(storedUsersCart5);
+		storedUsersCartArray.push(storedUsersCart6);
+		storedUsersCartArray.push(storedUsersCart7);
+		storedUsersCartArray.push(storedUsersCart8);
+		storedUsersCartArray.push(storedUsersCart9);
+		storedUsersCartArray.push(storedUsersCart10);
+		storedUsersCartArray.push(storedUsersCart11);
+		storedUsersCartArray.push(storedUsersCart12);
+	}
+
+		
+	
+	
+
+	if (storedUsersCartArray != null){
+    	var updatedCartArray = storedUsersCartArray.filter(function(el) { return el; });
+	}
+
+	
 	if (params.has('purchase_submit')) { //if the form has purchase_submit
 		for (i = 0; i < storedUsersCartArray.length; i++) {
 			if (params.has(`quantity${i}`)) { //if the form has quantity(i)
@@ -21,7 +87,9 @@
 			}
 		}
 	} else {
-		document.write('no form submitted'); //displays when no form is submitted
+		//document.write('no form submitted'); //displays when no form is submitted
+		alert("Please add some items to your cart first");
+		window.location.href = "store.html";
 	}
 	console.log(quantities); //displays quantities array in the console
 
@@ -87,6 +155,8 @@
 			<p>Thank you,<div id="showFullName">0</div>for your purchase!<br>
 				<div class="emphasis">Shanes Surf Shop</div></em>
 			</p>
+			<p style="color: white">_______________</p>
+			<p id="discountWord" style="font-weight: normal; font-style: italic; font-size: 15px; color:rgb(22, 169, 236);"><script>showDiscountSent()</script></p>
 		</address>
 		<table class="meta">
 			<tr>
@@ -111,17 +181,17 @@
 					<script>
 						subtotal = 0;
 						//for loop to display products in table each having its own row
-						for (i = 0; i < storedUsersCartArray.length; i++) {
+						for (i = 0; i < updatedCartArray.length; i++) {
 							if (quantities[i] > 0) {
 								// product row
-								extended_price = quantities[i] * storedUsersCartArray[i].price  //compute extended price
+								extended_price = quantities[i] * updatedCartArray[i].price  //compute extended price
 								subtotal += extended_price; //compute subtotal
 								//displays products(i) model, quantities, price, and extended_price into the table in its own row
 								document.write(`
               <tr>
-                <td width="43%">${storedUsersCartArray[i].model}</td>
+                <td width="43%">${updatedCartArray[i].model}</td>
                 <td align="center" width="11%">${quantities[i]}</td>
-                <td width="13%">\$${storedUsersCartArray[i].price.toFixed(2)}</td>
+                <td width="13%">\$${updatedCartArray[i].price.toFixed(2)}</td>
                 <td width="54%">\$${extended_price.toFixed(2)}</td>
               </tr>
               `);
