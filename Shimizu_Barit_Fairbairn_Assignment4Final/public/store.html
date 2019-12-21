@@ -1,0 +1,55 @@
+<!--
+Authors: Shane Shimizu, Daniel Francis Barit, Kiara Fairbairn
+File Description: store page, calls functions on products page to display products
+Date: December 19, 2019
+-->
+
+<!DOCTYPE html>
+<html>
+<!--Source from: WebDevSimplified, https://github.com/WebDevSimplified/Introduction-to-Web-Development/tree/master/Introduction%20to%20CSS/Lesson%203-->
+<head>
+    <title>Makai Bowls | Shop</title>
+    <meta name="description" content="This is the description">
+    <link rel="stylesheet" href="styles.css" />
+    <script src="store.js" async></script>
+    <script src="products.js"></script>
+</head>
+
+<body>
+    <h2 class="promo-label">SPECIAL PROMO: Enter "M4KAI" at Login to get $5 off your purchase!</h2>
+    <header class="main-header">
+        <nav class="main-nav nav">
+            <ul>
+                <li><a href="index.html"><img src="Images/brandlogo.png" class="brandlogo"></a></li>
+                <li></li>
+                <!--empty space for design-->
+                <li></li>
+                <!--empty space for design-->
+                <li><a href="index.html">H O M E</a></li>
+                <li><a href="store.html">S H O P</a></li>
+                <li><a href="cart.html">C A R T</a></li>
+                <li><a href="login.html">L O G I N</a></li>
+            </ul>
+        </nav>
+        <h1 class="title-name title-name-large">SHOP</h1>
+    </header>
+    <section class="container content-section">
+        <h2 class="section-header" id="bowls-section">BOWLS</h2>
+        <div class="shop-items">
+            <!--calls function to display products (bowls) on page-->
+            <script>displayProducts();</script>
+        </div>
+        <h2 class="section-header" id="apparel-section">APPAREL</h2>
+        <div class="shop-items">
+            <!--calls function to display products (apparel) on page-->
+            <script>displayProducts2();</script>
+        </div>
+        <h2 class="section-header" id="accessories-section">ACCESSORIES</h2>
+        <div class="shop-items">
+            <!--calls function to display products accessories on page-->
+            <script>displayProducts3();</script>
+        </div>
+    </section>
+</body>
+
+</html>
