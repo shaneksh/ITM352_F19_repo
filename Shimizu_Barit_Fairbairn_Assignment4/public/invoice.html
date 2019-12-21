@@ -1,6 +1,8 @@
-<!--Authors: Shane Shimizu, Daniel Francis Barit-->
-<!--File Description: invoice page-->
-<!--Date: 11/30/19-->
+<!--
+Authors: Shane Shimizu, Daniel Francis Barit, Kiara Fairbairn
+File Description: invoice page that uses local storage and displays products the user purchased after adding items to cart and logging in
+Date: December 19, 2019
+-->
 <script src=products.js type="text/javascript"></script>
 <script src=store.js type="text/javascript"></script>
 <script src="login.js" type="text/javascript"></script>
@@ -8,68 +10,64 @@
 	//Source from Professor Daniel Ports Assignment 1 Invoice
 	let params = (new URL(document.location)).searchParams; //gets query string that has form data and returns URLsearchparams objects to be able to get query
 	var quantities = [];//makes the variables quantities into an array
-	// form was submitted so process the invoice
-	storedUsersCart = JSON.parse(localStorage.getItem("usersCart"));
-	storedUsersCart2 = JSON.parse(localStorage.getItem("usersCart2"));
-	storedUsersCart3 = JSON.parse(localStorage.getItem("usersCart3"));
-	storedUsersCart4 = JSON.parse(localStorage.getItem("usersCart4"));
-	storedUsersCart5 = JSON.parse(localStorage.getItem("usersCart5"));
-	storedUsersCart6 = JSON.parse(localStorage.getItem("usersCart6"));
-	storedUsersCart7 = JSON.parse(localStorage.getItem("usersCart7"));     
-	storedUsersCart8 = JSON.parse(localStorage.getItem("usersCart8"));
-	storedUsersCart9 = JSON.parse(localStorage.getItem("usersCart9"));
-	storedUsersCart10 = JSON.parse(localStorage.getItem("usersCart10"));
-	storedUsersCart11 = JSON.parse(localStorage.getItem("usersCart11"));
-	storedUsersCart12 = JSON.parse(localStorage.getItem("usersCart12"));
 
-	function showDiscountSent(){
-		var foo;
-	}
-	
-	if (params.has("displayDiscount")){
-		var existsThis = true;
-		function showDiscountSent(){
-			if (existsThis == true){
-				document.write('5$ Discount Applied at Login');
+	//Source W3 Schools localStorage: https://www.w3schools.com/jsref/prop_win_localstorage.asp
+	// form was submitted so process the invoice
+	storedAlohaBowlCart = JSON.parse(localStorage.getItem("alohaBowlCart"));
+	storedManaBowlCart = JSON.parse(localStorage.getItem("manaBowlCart"));
+	storedWomensShirtCart = JSON.parse(localStorage.getItem("womensShirtCart"));
+	storedMensShirtCart = JSON.parse(localStorage.getItem("mensShirtCart"));
+	storedWomensSleeveCart = JSON.parse(localStorage.getItem("womensSleeveCart"));
+	storedMensSleeveCart = JSON.parse(localStorage.getItem("mensSleeveCart"));
+	storedWomensJacketCart = JSON.parse(localStorage.getItem("womensJacketCart"));
+	storedMensJacketCart = JSON.parse(localStorage.getItem("mensJacketCart"));
+	storedHatCart = JSON.parse(localStorage.getItem("hatCart"));
+	storedBagCart = JSON.parse(localStorage.getItem("bagCart"));
+	storedChainCart = JSON.parse(localStorage.getItem("chainCart"));
+	storedBottleCart = JSON.parse(localStorage.getItem("bottleCart"));
+
+	if (params.has("displayDiscount")) { //if document has displayDiscount with query string
+		var existsThis = true; //declare a variable for if statement
+		function showDiscountSent() { //function that displays that discount was applied on screen
+			if (existsThis == true) { //if exists is true
+				document.write('5$ Discount Applied at Login'); //write message to user that discount was applied at login
 			}
 		}
-		
-		storedUsersCartArray.push(storedUsersCart);
-		storedUsersCartArray.push(storedUsersCart2);
-		storedUsersCartArray.push(storedUsersCart3);
-		storedUsersCartArray.push(storedUsersCart4);
-		storedUsersCartArray.push(storedUsersCart5);
-		storedUsersCartArray.push(storedUsersCart6);
-		storedUsersCartArray.push(storedUsersCart7);
-		storedUsersCartArray.push(storedUsersCart8);
-		storedUsersCartArray.push(storedUsersCart9);
-		storedUsersCartArray.push(storedUsersCart10);
-		storedUsersCartArray.push(storedUsersCart11);
-		storedUsersCartArray.push(storedUsersCart12);
-	} else {
-		storedUsersCartArray.push(storedUsersCart);
-		storedUsersCartArray.push(storedUsersCart2);
-		storedUsersCartArray.push(storedUsersCart3);
-		storedUsersCartArray.push(storedUsersCart4);
-		storedUsersCartArray.push(storedUsersCart5);
-		storedUsersCartArray.push(storedUsersCart6);
-		storedUsersCartArray.push(storedUsersCart7);
-		storedUsersCartArray.push(storedUsersCart8);
-		storedUsersCartArray.push(storedUsersCart9);
-		storedUsersCartArray.push(storedUsersCart10);
-		storedUsersCartArray.push(storedUsersCart11);
-		storedUsersCartArray.push(storedUsersCart12);
+		//pushes the products stored in localStorage into storedUsersCartArray
+		storedUsersCartArray.push(storedAlohaBowlCart);
+		storedUsersCartArray.push(storedManaBowlCart);
+		storedUsersCartArray.push(storedWomensShirtCart);
+		storedUsersCartArray.push(storedMensShirtCart);
+		storedUsersCartArray.push(storedWomensSleeveCart);
+		storedUsersCartArray.push(storedMensSleeveCart);
+		storedUsersCartArray.push(storedWomensJacketCart);
+		storedUsersCartArray.push(storedMensJacketCart);
+		storedUsersCartArray.push(storedHatCart);
+		storedUsersCartArray.push(storedBagCart);
+		storedUsersCartArray.push(storedChainCart);
+		storedUsersCartArray.push(storedBottleCart);
+	} else { //else the continue to push products into the array
+		storedUsersCartArray.push(storedAlohaBowlCart);
+		storedUsersCartArray.push(storedManaBowlCart);
+		storedUsersCartArray.push(storedWomensShirtCart);
+		storedUsersCartArray.push(storedMensShirtCart);
+		storedUsersCartArray.push(storedWomensSleeveCart);
+		storedUsersCartArray.push(storedMensSleeveCart);
+		storedUsersCartArray.push(storedWomensJacketCart);
+		storedUsersCartArray.push(storedMensJacketCart);
+		storedUsersCartArray.push(storedHatCart);
+		storedUsersCartArray.push(storedBagCart);
+		storedUsersCartArray.push(storedChainCart);
+		storedUsersCartArray.push(storedBottleCart);
 
 	}
 
-	
 
-	if (storedUsersCartArray != null){
-    	var updatedCartArray = storedUsersCartArray.filter(function(el) { return el; });
+
+	if (storedUsersCartArray != null) { //if the entire storedUsersCartArray does not equal to no values
+		var updatedCartArray = storedUsersCartArray.filter(function (el) { return el; }); //filter the no value indexes out and store into a new variable
 	}
 
-	
-	
 	if (params.has('purchase_submit')) { //if the form has purchase_submit
 		for (i = 0; i < storedUsersCartArray.length; i++) {
 			if (params.has(`quantity${i}`)) { //if the form has quantity(i)
@@ -98,19 +96,15 @@
 		}
 		if (params.has("stickEmail")) {
 			displayEmail = params.get("stickEmail"); //get the information from the query; email
-			document.getElementById("showEmail").innerHTML = displayEmail;
+			document.getElementById("showEmail").innerHTML = displayEmail; //display the users email
 
 		}
 		if (params.has("stickUsername")) {
 			displayUserName = params.get("stickUsername"); //get the information from the query; username
-			document.getElementById("showUserName").innerHTML = displayUserName;
+			document.getElementById("showUserName").innerHTML = displayUserName; //display the user's user name
 		}
 
 	}
-
-	
-
-
 </script>
 
 <!--Invoice layout source from: https://codepen.io/tjoen/pen/vCHfu -->
@@ -147,7 +141,15 @@
 				<div class="emphasis">Shanes Surf Shop</div></em>
 			</p>
 			<p style="color: white">_______________</p>
-			<p id="discountWord" style="font-weight: normal; font-style: italic; font-size: 15px; color:rgb(22, 169, 236);"><script>showDiscountSent()</script></p>
+			<p id="discountWord"
+				style="font-weight: normal; font-style: italic; font-size: 15px; color:rgb(22, 169, 236);">
+				<!--calls showDiscountSent function and will display discount message if the document has displayDiscount query-->
+				<script>
+					if (params.has("displayDiscount")){ //if document has displayDiscount
+						showDiscountSent(); //call the funtion to display the discount message
+					}
+				</script>
+			</p>
 		</address>
 		<table class="meta">
 			<tr>
@@ -193,10 +195,10 @@
 						var tax = tax_rate * subtotal;
 
 						// Compute shipping
-						if (subtotal < 200) { //if subtotal is less than 200
+						if (subtotal < 30) { //if subtotal is less than 200
 							shipping = 7;
 						}
-						else if (subtotal < 400) { //if subtotal is less than 400
+						else if (subtotal < 60) { //if subtotal is less than 400
 							shipping = 10;
 						}
 						else {
@@ -228,7 +230,7 @@
 				<!--displays tax to 2 decimal places-->
 			</tr>
 			<tr>
-				<th>Shipping</th>
+				<th>Delivery Fee</th>
 				<td>$
 					<script>document.write(shipping.toFixed(2));</script>
 				</td>
@@ -238,10 +240,10 @@
 				<th class="invoicetotalhead">Total</th>
 				<td class="invoicetotal">$
 					<script>
-						if (params.has("displayDiscount")){
+						if (params.has("displayDiscount")) { //if document has displayDiscount query, subtract 5 from the total
 							document.write(total.toFixed(2) - 5.00);
-						} else {
-							document.write(total.toFixed(2));
+						} else { //else the document does not have displayDiscount
+							document.write(total.toFixed(2)); //write the normal price
 						}
 					</script>
 				</td>
@@ -250,12 +252,12 @@
 		</table>
 	</article>
 	<aside>
-		<h1 class="hOne">OUR SHIPPING POLICY</h1>
+		<h1 class="hOne">OUR DELIVERY FEE POLICY</h1>
 		<div>
 			<!--shipping rates-->
-			<br>A subtotal $0 - $199 will be $7 shipping
-			<br>A subtotal $200 - $399 will be $10 shipping
-			<br>Subtotals over $400 will be charged 3% of the subtotal amount
+			<br>A subtotal $0 - $29 will be $7 Delivery Fee
+			<br>A subtotal $30 - $60 will be $10 Delivery Fee
+			<br>Subtotals over $60 will be charged 3% of the subtotal amount
 		</div>
 	</aside>
 </body>

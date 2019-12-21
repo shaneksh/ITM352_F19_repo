@@ -1,8 +1,9 @@
 /*
-Author: Shane Shimizu, Daniel Francis Barit
-File Description: functions for validation
-Date: 11/30/19
+Authors: Shane Shimizu, Daniel Francis Barit, Kiara Fairbairn
+File Description: funtions for checking user input in textbox on cart page
+Date: December 19, 2019
 */
+
 //Source from Professor Daniel Port's Assignment 1
 //function for user entering quantities, checks if the user is entering anything other than an integer 
 function isNonNegInt(q, return_errors = false) {

@@ -1,8 +1,9 @@
 /*
-Author: Shane Shimizu, Daniel Franci Barit
-File Description: JSON array for products
-Date: 11/30/19
+Authors: Shane Shimizu, Daniel Francis Barit, Kiara Fairbairn
+File Description: products page including JSON array for products, empty array for cart, cookie functions, displaying products functions
+Date: December 19, 2019
 */
+
 //JSON array for products
 var products = [
     {
@@ -31,21 +32,21 @@ var products = [
         "price": 20.00,
         "image": "/Images/makaimenst.jpeg",
         "description": "<br> Style: Men Basic T-Shirt <br>Comfortable, casual and loose fitting, our heavyweight t-shirt will easily become a closet staple. <br> Size and Fit: Model is 6 ft 1 in and is wearing a medium. <br> Standard fit: Fits true to size. <br> Fabric and Care: 100 percent cotton. Double-needle hemmed sleeves and bottom. Machine wash cold, tumble dry low. Imported."
-        
+
     },
     {
         "model": "Makai Womens Longsleeve",
         "price": 25.00,
         "image": "/Images/makaiwomenslong.jpeg",
         "description": "<br> Style: Women Basic Long Sleeve T-Shirt. <br> Comfortable, casual and loose fitting, our long-sleeve heavyweight t-shirt will quickly become one of your favorites. <br> Size and Fit: Model is 5 ft 9 in and wearing a small. <br> Standard fit: Runs true to size. <br> Fabric and Care: 100 percent cotton. Soft, tag-free neck label with a lay flat collar for comfort. Shoulder-to-shoulder tape for durability. Imported. Preshrunk. Machine wash cold"
-        
+
     },
     {
         "model": "Makai Mens Longsleeve",
         "price": 25.00,
         "image": "/Images/makaimenslong.jpeg",
         "description": "<br> Style: Men Basic Long Sleeve T-Shirt. <br> Comfortable, casual and loose fitting, our long-sleeve heavyweight t-shirt will quickly become one of your favorites. <br> Size and Fit: Model is 6 ft 0 in and wearing a medium. <br> Standard fit: Runs true to size. <br> Fabric and Care: 100 percent cotton. Soft, tag-free neck label with a lay flat collar for comfort. Shoulder-to-shoulder tape for durability. Imported. Preshrunk. Machine wash cold"
-        
+
     },
     {
         "model": "Makai Womens Jacket",
@@ -64,7 +65,7 @@ var products = [
         "price": 30.00,
         "image": "/Images/makaihat.jpeg",
         "description": "<br> Style: Alternative Apparel Basic Adjustable Cap. <br> Want a good-looking comfortable hat? This one is for you. From Alternative Apparel, this chino twill cap has a pre-curved bill, cloth strap and an antique brass slide buckle closure with tuck-in grommet, so it fits well on anyone. <br> 100 percent  cotton woven. <br> Unstructured. <br> Low profile. <br> Antiqued brass side buckle. <br> Curved visor."
-    
+
     },
     {
         "model": "Makai Reusable Bag",
@@ -92,142 +93,162 @@ if (typeof module != 'undefined') {
     module.exports.products = products;
 }
 
-
-//when user clicks on the click me button on the home page
-function welcome() {
-    var name = prompt("Hi there! What is your name?"); //prompts the user for their name
-    alert("Hi " + name + "! Welcome to my online store, click on the shop tab to view my products!"); //alerts their name and string
-}
-
-//for loop that displays products stored in the JSON array onto the products.html page when the function is called
-//<div class="shop-item-description">${products[i].description}</div>
-//
 //Source W3 Schools Cookies: https://www.w3schools.com/js/js_cookies.asp
-//aloha bowl
-function setCookie0(cname,cvalue,exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*10000));
-    var expires = "expires=" + d.toGMTString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-  }
-  
-  function getCookie0(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
+//function to set cookie
+function setCookie0(cname, cvalue, exdays) { //passes the name of the cookie, the value of the cookie, and the experation date for cookie as parameters
+    var d = new Date(); //declare d as the current date
+    d.setTime(d.getTime() + (exdays * 10000)); //sets the expiration of cookie to 5 minutes after being set
+    var expires = "expires=" + d.toGMTString(); //delcares expires as convert date object to string and returns it
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/"; //sets/documents the cookie and concatnates with the name, value, expiration, and path of the cookie
+}
 
+//function to retrieve the cookie
+function getCookie0(cname) { //uses cname (cookie name) as parameter
+    var name = cname + "="; //declares name with the text to look for the cookie name + "="
+    var decodedCookie = decodeURIComponent(document.cookie); //decodes the cookie to manage cookies with special characters
+    var ca = decodedCookie.split(';'); //split the cookie on semi-colons into an array
+    for (var i = 0; i < ca.length; i++) { //for thje lengh of ca/decoded cookie
+        var c = ca[i]; //delcare c and read out each value
+        while (c.charAt(0) == ' ') {// while index at specified string == 0
+            c = c.substring(1); //c now is now given string 
+        }
+        if (c.indexOf(name) == 0) { //if the cookie is located at the 0 index
+            return c.substring(name.length, c.length); //return the cookie value
+        }
+    }
+    return ""; //return "" if the cookie does not exist
+}
+
+//function that sets a cookie for Aloha Bowl
 function checkCookie0() {
-    setCookie0("alohabowl", JSON.stringify(products[0]), 30);
+    setCookie0("alohabowl", JSON.stringify(products[0]), 30); //add name alohabowl to cookie, sets value to products[0], sets experation time
 }
-function checkCookie1(){
-    setCookie0("manabowl", JSON.stringify(products[1]), 30);
+//function that sets a cookie for Mana Bowl
+function checkCookie1() {
+    setCookie0("manabowl", JSON.stringify(products[1]), 30); //add name manabowl to cookie, sets value to products[1], sets experation time
 
 }
-function checkCookie2(){
-    setCookie0("womensshirt", JSON.stringify(products[2]), 30);
-    
-}
-function checkCookie3(){
-    setCookie0("mensshirt", JSON.stringify(products[3]), 30);
-    
-}
-function checkCookie4(){
-    setCookie0("womenssleeve", JSON.stringify(products[4]), 30);
-    
-}
-function checkCookie5(){
-    setCookie0("menssleeve", JSON.stringify(products[5]), 30);
+//function that sets a cookie for Womens Shirt
+function checkCookie2() {
+    setCookie0("womensshirt", JSON.stringify(products[2]), 30); //add name womensshirt to cookie, sets value to products[2], sets experation time
 
 }
-function checkCookie6(){
-    setCookie0("womensjacket", JSON.stringify(products[6]), 30);
-   
+//function that sets a cookie for Mens T-Shirt
+function checkCookie3() {
+    setCookie0("mensshirt", JSON.stringify(products[3]), 30); //add name menshirt to cookie, sets value to products[3], sets experation time
+
 }
-function checkCookie7(){
-    setCookie0("mensjacket", JSON.stringify(products[7]), 30);
-   
+//function that sets a cookie for Womens Longsleeve
+function checkCookie4() {
+    setCookie0("womenssleeve", JSON.stringify(products[4]), 30); //add name womenssleeve to cookie, sets value to products[4], sets experation time
+
 }
-function checkCookie8(){
-    setCookie0("makaihat", JSON.stringify(products[8]), 30);
-    
+//function that sets a cookie for Mens Longsleeve
+function checkCookie5() {
+    setCookie0("menssleeve", JSON.stringify(products[5]), 30); //add name menssleeve to cookie, sets value to products[5], sets experation time
+
 }
-function checkCookie9(){
-    setCookie0("makaibag", JSON.stringify(products[9]), 30);
-    
+//function that sets a cookie for Womens Jacket
+function checkCookie6() {
+    setCookie0("womensjacket", JSON.stringify(products[6]), 30); //add name womensjacket to cookie, sets value to products[6], sets experation time
+
 }
-function checkCookie10(){
-    setCookie0("makaichain", JSON.stringify(products[10]), 30);
-    
+//function that sets a cookie for Mens Jacket
+function checkCookie7() {
+    setCookie0("mensjacket", JSON.stringify(products[7]), 30); //add name mensjacket to cookie, sets value to products[7], sets experation time
+
 }
-function checkCookie11(){
-    setCookie0("makaibottle", JSON.stringify(products[11]), 30);
-   
+//function that sets a cookie for Makai Hat
+function checkCookie8() {
+    setCookie0("makaihat", JSON.stringify(products[8]), 30); //add name makaihat to cookie, sets value to products[8], sets experation time
+
+}
+//function that sets a cookie for Makai Reusable Bag
+function checkCookie9() {
+    setCookie0("makaibag", JSON.stringify(products[9]), 30); //add name makaibag to cookie, sets value to products[9], sets experation time
+
+}
+//function that sets a cookie for Makai Key Chain
+function checkCookie10() {
+    setCookie0("makaichain", JSON.stringify(products[10]), 30); //add name makaichain to cookie, sets value to products[10], sets experation time
+
+}
+//function that sets a cookie for Makai Reusable Water Bottle
+function checkCookie11() {
+    setCookie0("makaibottle", JSON.stringify(products[11]), 30); //add name makaibottle to cookie, sets value to products[11], sets experation time
+
 }
 
-
-//<label id="quantity${i}_label" class="shop-item-quantity">Quantity</label>
-//<input class="cart-quantity-input" type="text" name="quantity${i}" onkeyup=checkQuantityTextbox(this); placeholder="0">
+//function to display the first 2 indexes of the products array (bowls)
 function displayProducts() {
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < 2; i++) { //for loop to only display the first two items of the products array
+        /*
+            -document.write first 2 products in the array
+            -function on regular expression gets ride of spaces in string; allows user to properly be redirected to the respectuve file of product when clicked on
+            -regular expression source: https://stackoverflow.com/questions/5964373/is-there-a-difference-between-s-g-and-s-g
+        */
         document.write(`
             <div class="shop-item">
-                <a href="${(products[i].model).replace(/\s+/g,'')}.html" onclick="checkCookie${i}()" ><span class="shop-item-title">${products[i].model}</span></a>
+                <a href="${(products[i].model).replace(/\s+/g, '')}.html" onclick="checkCookie${i}()" ><span class="shop-item-title">${products[i].model}</span></a>
                 <div class="enlarge">
                     <img class="shop-item-image" src=${products[i].image}>
                 </div>
                 <div class="shop-item-details">
-                <a href="${(products[i].model).replace(/\s+/g,'')}.html"><input class="btn btn-primary btn-purchase" type="button" name="purchase_submit" value="View More Info" onclick="checkCookie${i}()"></a>
+                <a href="${(products[i].model).replace(/\s+/g, '')}.html"><input class="btn btn-primary btn-purchase" type="button" name="purchase_submit" value="View More Info" onclick="checkCookie${i}()"></a>
                 </div>
             </div>
         `);
     }
 }
 
-function displayProducts2(){
-    for (i = 2; i < 8; i++) {
+//function to display the third to the eight indexes of the products array (apparel)
+function displayProducts2() {
+    for (i = 2; i < 8; i++) { //for loop to only display the third to the eigth indexes of products array
+        /*
+            -document.write the third to eigth indexes of products in the array
+            -function on regular expression gets ride of spaces in string; allows user to properly be redirected to the respectuve file of product when clicked on
+            -regular expression source: https://stackoverflow.com/questions/5964373/is-there-a-difference-between-s-g-and-s-g
+        */
         document.write(`
             <div class="shop-item">
-            <a href="${(products[i].model).replace(/\s+/g,'')}.html" onclick="checkCookie${i}()"><span class="shop-item-title">${products[i].model}</span></a>
+            <a href="${(products[i].model).replace(/\s+/g, '')}.html" onclick="checkCookie${i}()"><span class="shop-item-title">${products[i].model}</span></a>
                 <div class="enlarge">
                     <img class="shop-item-image" src=${products[i].image}>
                 </div>
                 <div class="shop-item-details">
-                <a href="${(products[i].model).replace(/\s+/g,'')}.html"><input class="btn btn-primary btn-purchase" type="button" name="purchase_submit" value="View More Info" onclick="checkCookie${i}()"></a>
+                <a href="${(products[i].model).replace(/\s+/g, '')}.html"><input class="btn btn-primary btn-purchase" type="button" name="purchase_submit" value="View More Info" onclick="checkCookie${i}()"></a>
                 </div>
             </div>
         `);
-    }   
+    }
 }
 
-function displayProducts3(){
-    for (i = 8; i < 13 ; i++) {
+//function to display the ninth to the twelve indexes of the products array (accessories)
+function displayProducts3() {
+    for (i = 8; i < 13; i++) { //function to display the ninth to the twelve indexes of the products array
+        /*
+            -document.write the ninth to twelve indexes of products in the array
+            -function on regular expression gets ride of spaces in string; allows user to properly be redirected to the respectuve file of product when clicked on
+            -regular expression source: https://stackoverflow.com/questions/5964373/is-there-a-difference-between-s-g-and-s-g
+        */
         document.write(`
             <div class="shop-item">
-            <a href="${(products[i].model).replace(/\s+/g,'')}.html" onclick="checkCookie${i}()"><span class="shop-item-title">${products[i].model}</span></a>
+            <a href="${(products[i].model).replace(/\s+/g, '')}.html" onclick="checkCookie${i}()"><span class="shop-item-title">${products[i].model}</span></a>
                 <div class="enlarge">
                     <img class="shop-item-image" src=${products[i].image}>
                 </div>
                 <div class="shop-item-details">
-                <a href="${(products[i].model).replace(/\s+/g,'')}.html"><input class="btn btn-primary btn-purchase" type="button" name="purchase_submit" value="View More Info" onclick="checkCookie${i}()"></a>
+                <a href="${(products[i].model).replace(/\s+/g, '')}.html"><input class="btn btn-primary btn-purchase" type="button" name="purchase_submit" value="View More Info" onclick="checkCookie${i}()"></a>
                 </div>
             </div>
         `);
-    }   
+    }
 }
 
+//function to display Aloha Bowl when called
 function displayAlohaBowl() {
-        document.write(`
+    //document writes the index along with respective information
+    document.write(`
             <div class="shop-item">
                 <div class="enlarge">
                     <img class="shop-item-image" src=${products[0].image}>
@@ -237,10 +258,12 @@ function displayAlohaBowl() {
                     <span class="shop-item-price">$${products[0].price.toFixed(2)}</span>
                 </div>
             </div>
-        `);  
+        `);
 }
 
+//function to display Mana Bowl when called
 function displayManaBowl() {
+    //document writes the index along with respective information
     document.write(`
         <div class="shop-item">
             <div class="enlarge">
@@ -251,10 +274,12 @@ function displayManaBowl() {
                 <span class="shop-item-price">$${products[1].price.toFixed(2)}</span>
             </div>
         </div>
-    `);  
+    `);
 }
 
+//function to display Makai Womens Shirt when called
 function displayMakaiWomensShirt() {
+    //document writes the index along with respective information
     document.write(`
         <div class="shop-item">
             <div class="enlarge">
@@ -265,10 +290,12 @@ function displayMakaiWomensShirt() {
                 <span class="shop-item-price">$${products[2].price.toFixed(2)}</span>
             </div>
         </div>
-    `);  
+    `);
 }
 
+//function to display Makai Mens Shirt when called
 function displayMakaiMensShirt() {
+    //document writes the index along with respective information
     document.write(`
         <div class="shop-item">
             <div class="enlarge">
@@ -279,10 +306,12 @@ function displayMakaiMensShirt() {
                 <span class="shop-item-price">$${products[3].price.toFixed(2)}</span>
             </div>
         </div>
-    `);  
+    `);
 }
 
+//function to display Makai Womens Longsleeve when called
 function displayMakaiWomensSleeve() {
+    //document writes the index along with respective information
     document.write(`
         <div class="shop-item">
             <div class="enlarge">
@@ -293,10 +322,12 @@ function displayMakaiWomensSleeve() {
                 <span class="shop-item-price">$${products[4].price.toFixed(2)}</span>
             </div>
         </div>
-    `);  
+    `);
 }
 
+//function to display Makai Mens Longsleeve when called
 function displayMakaiMensSleeve() {
+    //document writes the index along with respective information
     document.write(`
         <div class="shop-item">
             <div class="enlarge">
@@ -307,10 +338,12 @@ function displayMakaiMensSleeve() {
                 <span class="shop-item-price">$${products[5].price.toFixed(2)}</span>
             </div>
         </div>
-    `);  
+    `);
 }
 
+//function to display Makai Womens Jacket when called
 function displayMakaiWomensJacket() {
+    //document writes the index along with respective information
     document.write(`
         <div class="shop-item">
             <div class="enlarge">
@@ -321,10 +354,12 @@ function displayMakaiWomensJacket() {
                 <span class="shop-item-price">$${products[6].price.toFixed(2)}</span>
             </div>
         </div>
-    `);  
+    `);
 }
 
+//function to display Makai Mens Jacket when called
 function displayMakaiMensJacket() {
+    //document writes the index along with respective information
     document.write(`
         <div class="shop-item">
             <div class="enlarge">
@@ -335,10 +370,12 @@ function displayMakaiMensJacket() {
                 <span class="shop-item-price">$${products[7].price.toFixed(2)}</span>
             </div>
         </div>
-    `);  
+    `);
 }
 
+//function to display Makai Hat when called
 function displayMakaiHat() {
+    //document writes the index along with respective information
     document.write(`
         <div class="shop-item">
             <div class="enlarge">
@@ -349,10 +386,12 @@ function displayMakaiHat() {
                 <span class="shop-item-price">$${products[8].price.toFixed(2)}</span>
             </div>
         </div>
-    `);  
+    `);
 }
 
+//function to display Makai Bag when called
 function displayMakaiBag() {
+    //document writes the index along with respective information
     document.write(`
         <div class="shop-item">
             <div class="enlarge">
@@ -363,10 +402,12 @@ function displayMakaiBag() {
                 <span class="shop-item-price">$${products[9].price.toFixed(2)}</span>
             </div>
         </div>
-    `);  
+    `);
 }
 
+//function to display Makai Chain when called
 function displayMakaiChain() {
+    //document writes the index along with respective information
     document.write(`
         <div class="shop-item">
             <div class="enlarge">
@@ -377,10 +418,12 @@ function displayMakaiChain() {
                 <span class="shop-item-price">$${products[10].price.toFixed(2)}</span>
             </div>
         </div>
-    `);  
+    `);
 }
 
+//function to display Makai Bottle when called
 function displayMakaiBottle() {
+    //document writes the index along with respective information
     document.write(`
         <div class="shop-item">
             <div class="enlarge">
@@ -391,26 +434,14 @@ function displayMakaiBottle() {
                 <span class="shop-item-price">$${products[11].price.toFixed(2)}</span>
             </div>
         </div>
-    `);  
-}
-
-function displayUserProducts() {
-    document.write(`
-        <div class="shop-item">
-        <span class="shop-item-title">${storedUsersCartArray[0].model}</span>
-        <div class="enlarge">
-            <img class="shop-item-image" src=${storedUsersCartArray[0].image}>
-        </div>
-        <div class="shop-item-description">${storedUsersCartArray[0].description}</div>
-        <div class="shop-item-details">
-            <span class="shop-item-price">$${storedUsersCartArray[0].price.toFixed(2)}</span>
-            <label id="quantity0_label" class="shop-item-quantity">Quantity</label>
-            <input class="cart-quantity-input" type="text" name="quantity0" onkeyup=checkQuantityTextbox(this); placeholder="0">
-        </div>
-        </div>
     `);
 }
+
+//creates an empty array with the variable name storedUsersCartArray that items will be pushed to when users add products to the cart
 var storedUsersCartArray = [];
+
+//Source from Profesor Daniel Port
+//checks if the products in the array are defined
 if (typeof module != 'undefined') {
     module.exports.storedUsersCartArray = storedUsersCartArray;
 }

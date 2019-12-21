@@ -1,6 +1,6 @@
 <!--
 Authors: Shane Shimizu, Daniel Francis Barit, Kiara Fairbairn
-File Description: Aloha Bowl Page
+File Description: Cart that displays items user added to the cart and recently viewed items; uses local storage and cookies
 Date: December 19, 2019
 -->
 
@@ -22,32 +22,32 @@ Date: December 19, 2019
 <script>
 
     //parse the localStorage with respective name and store in variable for each product
-    storedUsersCart = JSON.parse(localStorage.getItem("usersCart"));
-    storedUsersCart2 = JSON.parse(localStorage.getItem("usersCart2"));
-    storedUsersCart3 = JSON.parse(localStorage.getItem("usersCart3"));
-    storedUsersCart4 = JSON.parse(localStorage.getItem("usersCart4"));
-    storedUsersCart5 = JSON.parse(localStorage.getItem("usersCart5"));
-    storedUsersCart6 = JSON.parse(localStorage.getItem("usersCart6"));
-    storedUsersCart7 = JSON.parse(localStorage.getItem("usersCart7"));
-    storedUsersCart8 = JSON.parse(localStorage.getItem("usersCart8"));
-    storedUsersCart9 = JSON.parse(localStorage.getItem("usersCart9"));
-    storedUsersCart10 = JSON.parse(localStorage.getItem("usersCart10"));
-    storedUsersCart11 = JSON.parse(localStorage.getItem("usersCart11"));
-    storedUsersCart12 = JSON.parse(localStorage.getItem("usersCart12"));
+    storedAlohaBowlCart = JSON.parse(localStorage.getItem("alohaBowlCart"));
+    storedManaBowlCart = JSON.parse(localStorage.getItem("manaBowlCart"));
+    storedWomensShirtCart = JSON.parse(localStorage.getItem("womensShirtCart"));
+    storedMensShirtCart = JSON.parse(localStorage.getItem("mensShirtCart"));
+    storedWomensSleeveCart = JSON.parse(localStorage.getItem("womensSleeveCart"));
+    storedMensSleeveCart = JSON.parse(localStorage.getItem("mensSleeveCart"));
+    storedWomensJacketCart = JSON.parse(localStorage.getItem("womensJacketCart"));
+    storedMensJacketCart = JSON.parse(localStorage.getItem("mensJacketCart"));
+    storedHatCart = JSON.parse(localStorage.getItem("hatCart"));
+    storedBagCart = JSON.parse(localStorage.getItem("bagCart"));
+    storedChainCart = JSON.parse(localStorage.getItem("chainCart"));
+    storedBottleCart = JSON.parse(localStorage.getItem("storedBottleCart"));
 
     //push the object stored in the previously declared variables in storedUsersCartArray
-    storedUsersCartArray.push(storedUsersCart);
-    storedUsersCartArray.push(storedUsersCart2);
-    storedUsersCartArray.push(storedUsersCart3);
-    storedUsersCartArray.push(storedUsersCart4);
-    storedUsersCartArray.push(storedUsersCart5);
-    storedUsersCartArray.push(storedUsersCart6);
-    storedUsersCartArray.push(storedUsersCart7);
-    storedUsersCartArray.push(storedUsersCart8);
-    storedUsersCartArray.push(storedUsersCart9);
-    storedUsersCartArray.push(storedUsersCart10);
-    storedUsersCartArray.push(storedUsersCart11);
-    storedUsersCartArray.push(storedUsersCart12);
+    storedUsersCartArray.push(storedAlohaBowlCart);
+    storedUsersCartArray.push(storedManaBowlCart);
+    storedUsersCartArray.push(storedWomensShirtCart);
+    storedUsersCartArray.push(storedMensShirtCart);
+    storedUsersCartArray.push(storedWomensSleeveCart);
+    storedUsersCartArray.push(storedMensSleeveCart);
+    storedUsersCartArray.push(storedWomensJacketCart);
+    storedUsersCartArray.push(storedMensJacketCart);
+    storedUsersCartArray.push(storedHatCart);
+    storedUsersCartArray.push(storedBagCart);
+    storedUsersCartArray.push(storedChainCart);
+    storedUsersCartArray.push(storedBottleCart);
 
     //if the storedUsersCartArray is not empty
     if (storedUsersCartArray != null) {
@@ -124,76 +124,81 @@ Date: December 19, 2019
     function checkTheseCookies0() {
 
         //declare variables and gets the cookie with the respective name with product informaiton
-        user = getCookie0("alohabowl");
-        user1 = getCookie0("manabowl");
-        user2 = getCookie0("womensshirt");
-        user3 = getCookie0("mensshirt");
-        user4 = getCookie0("womenssleeve");
-        user5 = getCookie0("menssleeve");
-        user6 = getCookie0("womensjacket");
-        user7 = getCookie0("mensjacket");
-        user8 = getCookie0("makaihat");
-        user9 = getCookie0("makaibag");
-        user10 = getCookie0("makaichain");
-        user11 = getCookie0("makaibottle");
+        alohaBowlCookie = getCookie0("alohabowl");
+        manaBowlCookie = getCookie0("manabowl");
+        womensShirtCookie = getCookie0("womensshirt");
+        mensShirtCookie = getCookie0("mensshirt");
+        womensSleeveCookie = getCookie0("womenssleeve");
+        mensSleeveCookie = getCookie0("menssleeve");
+        womensJacketCookie = getCookie0("womensjacket");
+        mensJacketCookie = getCookie0("mensjacket");
+        makaiHatCookie = getCookie0("makaihat");
+        makaiBagCookie = getCookie0("makaibag");
+        makaiChainCookie = getCookie0("makaichain");
+        makaiBottleCookie = getCookie0("makaibottle");
 
-        
-        if (user != "" && user != null) {
-            final = JSON.parse(user);
-            recentViewArray.push(final);
+
+        if (alohaBowlCookie != "" && alohaBowlCookie != null) { //if alohaBowlCookie does not equal empty string and does not equal no value
+            finalAloha = JSON.parse(alohaBowlCookie); //parse variable storing the respective cookie name and store in final variable
+            recentViewArray.push(finalAloha); //push the object into recentViewArray
         }
-        if (user1 != "" && user1 != null) {
-            final1 = JSON.parse(user1);
-            recentViewArray.push(final1);
+        if (manaBowlCookie != "" && manaBowlCookie != null) { //if manaBowlCookie does not equal empty string and does not equal no value
+            finalMana = JSON.parse(manaBowlCookie); //parse variable storing the respective cookie name and store in final variable
+            recentViewArray.push(finalMana); //push the object into recentViewArray
         }
-        if (user2 != "" && user2 != null) {
-            final2 = JSON.parse(user2);
-            recentViewArray.push(final2);
+        if (womensShirtCookie != "" && womensShirtCookie != null) { //if womensShirtCookie does not equal empty string and does not equal no value
+            finalWoShirt = JSON.parse(womensShirtCookie); //parse variable storing the respective cookie name and store in final variable
+            recentViewArray.push(finalWoShirt); //push the object into recentViewArray
         }
-        if (user3 != "" && user3 != null) {
-            final3 = JSON.parse(user3);
-            recentViewArray.push(final3);
+        if (mensShirtCookie != "" && mensShirtCookie != null) { //if mensShirtCookie does not equal empty string and does not equal no value
+            finalMeShirt = JSON.parse(mensShirtCookie);//parse variable storing the respective cookie name and store in final variable
+            recentViewArray.push(finalMeShirt); //push the object into recentViewArray
         }
-        if (user4 != "" && user4 != null) {
-            final4 = JSON.parse(user4);
-            recentViewArray.push(final4);
+        if (womensSleeveCookie != "" && womensSleeveCookie != null) { //if womensSleeveCookie does not equal empty string and does not equal no value
+            finalWoSleeve = JSON.parse(womensSleeveCookie); //parse variable storing the respective cookie name and store in final variable
+            recentViewArray.push(finalWoSleeve); //push the object into recentViewArray
         }
-        if (user5 != "" && user5 != null) {
-            final5 = JSON.parse(user5);
-            recentViewArray.push(final5);
+        if (mensSleeveCookie != "" && mensSleeveCookie != null) { //if mensSleeveCookie does not equal empty string and does not equal no value
+            finalMeSleeve = JSON.parse(mensSleeveCookie); //parse variable storing the respective cookie name and store in final variable
+            recentViewArray.push(finalMeSleeve); //push the object into recentViewArray
         }
-        if (user6 != "" && user6 != null) {
-            final6 = JSON.parse(user6);
-            recentViewArray.push(final6);
+        if (womensJacketCookie != "" && womensJacketCookie != null) { //if womensJacketCookie does not equal empty string and does not equal no value
+            finalWoJacket = JSON.parse(womensJacketCookie); //parse variable storing the respective cookie name and store in final variable
+            recentViewArray.push(finalWoJacket); //push the object into recentViewArray
         }
-        if (user7 != "" && user7 != null) {
-            final7 = JSON.parse(user7);
-            recentViewArray.push(final7);
+        if (mensJacketCookie != "" && mensJacketCookie != null) { //if mensJacketCookie does not equal empty string and does not equal no value
+            finalMeJacket = JSON.parse(mensJacketCookie); //parse variable storing the respective cookie name and store in final variable
+            recentViewArray.push(finalMeJacket); //push the object into recentViewArray
         }
-        if (user8 != "" && user8 != null) {
-            final8 = JSON.parse(user8);
-            recentViewArray.push(final8);
+        if (makaiHatCookie != "" && makaiHatCookie != null) { //if makaiHatCookie does not equal empty string and does not equal no value
+            finalHat = JSON.parse(makaiHatCookie); //parse variable storing the respective cookie name and store in final variable
+            recentViewArray.push(finalHat); //push the object into recentViewArray
         }
-        if (user9 != "" && user9 != null) {
-            final9 = JSON.parse(user9);
-            recentViewArray.push(final9);
+        if (makaiBagCookie != "" && makaiBagCookie != null) { //if makaiBagCookie does not equal empty string and does not equal no value
+            finalBag = JSON.parse(makaiBagCookie); //parse variable storing the respective cookie name and store in final variable
+            recentViewArray.push(finalBag); //push the object into recentViewArray
         }
-        if (user10 != "" && user10 != null) {
-            final10 = JSON.parse(user10);
-            recentViewArray.push(final10);
+        if (makaiChainCookie != "" && makaiChainCookie != null) { //if makaiChainCookie does not equal empty string and does not equal no value
+            finalChain = JSON.parse(makaiChainCookie); //parse variable storing the respective cookie name and store in final variable
+            recentViewArray.push(finalChain); //push the object into recentViewArray
         }
-        if (user11 != "" && user11 != null) {
-            final11 = JSON.parse(user11);
-            recentViewArray.push(final11);
+        if (makaiBottleCookie != "" && makaiBottleCookie != null) { //if makaiBottleCookie does not equal empty string and does not equal no value
+            finalBottle = JSON.parse(makaiBottleCookie); //parse variable storing the respective cookie name and store in final variable
+            recentViewArray.push(finalBottle); //push the object into recentViewArray
         }
 
-        if (recentViewArray != null) {
-            updatedRecentArray = recentViewArray.filter(function (el) { return el; });
+        if (recentViewArray != null) { //if recentViewArray does not equal no values
+            updatedRecentArray = recentViewArray.filter(function (el) { return el; }); //previosly declared updatedRecentArray variable with empty array now stores items in recentViewArray and filters null indexes
         }
-        if (updatedRecentArray.length == 0) {
-            document.write('No recent items viewed');
+        if (updatedRecentArray.length == 0) { //if updatedRecentArray length is 0
+            document.write('No recent items viewed'); //no items are in the array and tell the user
         }
-        for (i = 0; i < updatedRecentArray.length; i++) {
+        for (i = 0; i < updatedRecentArray.length; i++) { //for loop to display products on page based on the items inside the array and its length
+            /*
+                -document.write products in the array
+                -function on regular expression gets ride of spaces in string; allows user to properly be redirected to the respectuve file of product when clicked on
+                regular expression source: https://stackoverflow.com/questions/5964373/is-there-a-difference-between-s-g-and-s-g
+            */
             document.write(`
                         <div class="shop-item">
                             <div class="enlarge">
@@ -216,7 +221,9 @@ Date: December 19, 2019
             <ul>
                 <li><a href="index.html"><img src="Images/brandlogo.png" class="brandlogo"></a></li>
                 <li></li>
+                <!--empty space for design-->
                 <li></li>
+                <!--empty space for design-->
                 <li><a href="index.html">H O M E</a></li>
                 <li><a href="store.html">S H O P</a></li>
                 <li><a href="cart.html">C A R T</a></li>
@@ -242,7 +249,7 @@ Date: December 19, 2019
             <h2 class="section-header" id="bowls-section">Recently Viewed Items</h2>
             <p style="text-align: center;">Recently Viewed List Will Clear After 5 min</p>
             <div class="shop-items">
-                <!--calls function to display products on page-->
+                <!--calls function to checkCookies and displays products based products clicked/cookies set-->
                 <script>checkTheseCookies0()</script>
             </div>
         </section>
